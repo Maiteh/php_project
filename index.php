@@ -28,7 +28,7 @@
 
 		<!-- row 1 -->
 		<header class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12 col-lg-offset-1">
 				<img id="logo" class="img-responsive" src="images/logo.png" alt="logo">
 			</div>
 		</header>
