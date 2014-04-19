@@ -1,0 +1,95 @@
+@import "bootstrap.css";
+
+body{
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.headerLogo{
+	margin-top: 50px;
+}
+
+.btn{
+	margin-top: 60px;
+}
+
+.footerText{
+	margin-top: 50px;
+}
+
+.formRegister{
+	margin-top: 60px;
+	width: 370px;
+	height: auto;
+	border: 3px solid #000;
+	border-radius: 15px;
+}
+
+#titleRegister{
+	font-weight: bold
+}
+
+input{
+	width: 300px;
+	height: 50px;
+	margin:20px;
+}
+
+#iconUsername{
+	background-image: url(../images/profileIcon.png);
+	float: left;
+	padding-left: 70px;
+	padding-top: 10px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+	font-size: 16px;
+}
+
+#iconEmail{
+	background-image: url(../images/emailIcon.png);
+	float: left;
+	padding-left: 70px;
+	padding-top: 10px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+	font-size: 16px;
+}
+
+#iconPassword{
+	background-image: url(../images/keyIcon.png);
+	float: left;
+	padding-left: 70px;
+	padding-top: 10px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+	font-size: 16px;
+}
+
+.formLogin{
+	margin-top: 60px;
+	width: 370px;
+	height: auto;
+	border: 3px solid #000;
+	border-radius: 15px;
+}
+
+.error{
+	color:red;
+}
+
+/******Media quries*********/
+
+	/*everything smaller then an ipad*/
+
+@media all and (max-width: 767px) {
+ 
+	.btn{
+		margin-top: 150px;
+	}
+
+ 	.footerText{
+		margin-top: 200px;
+		font-size: 10px;
+	}	
+}

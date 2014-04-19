@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+html:5/*!
+=======
 /*!
+>>>>>>> FETCH_HEAD
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -48,6 +52,10 @@ a {
 a:active,
 a:hover {
   outline: 0;
+<<<<<<< HEAD
+
+=======
+>>>>>>> FETCH_HEAD
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -295,6 +303,11 @@ a:hover,
 a:focus {
   color: #2a6496;
   text-decoration: underline;
+<<<<<<< HEAD
+  background-color: blue;
+}
+=======
+>>>>>>> FETCH_HEAD
 }
 a:focus {
   outline: thin dotted;
