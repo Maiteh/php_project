@@ -80,7 +80,7 @@
 			</section>
 		<!-- end row 2 -->
 
-		<?php include("include_footer.php");?>	
+		<?php include("includes/include.footer.php");?>	
 
 	</div><!-- end container -->
 
