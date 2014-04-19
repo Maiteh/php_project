@@ -75,7 +75,7 @@
 		<!-- end row 2 -->
 
 
-		<?php include("include_footer.php");?>	
+		<?php include("include/include.footer.php");?>	
 
 	</div><!-- end container -->
 
