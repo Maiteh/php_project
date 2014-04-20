@@ -10,7 +10,30 @@
 <body >
 
 	<div class="container">
-		
+		<header class="row">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#" class="navbar-brand logoW"><img src="images/logoW.png" alt="logo"></a>
+				</div>
+				<div class="navbar-collapse collapse" i>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">test 0</a></li>
+						<li><a href="#">test 1</a></li>
+						<li><a href="#">test 2</a></li>
+						<li><a href="#">test 3</a></li>
+					</ul>
+					
+				</div>
+			
+				
+			</nav>
+		</header>
 	
 		<?php include("includes/include.footer.php"); ?>
 		
