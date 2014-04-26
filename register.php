@@ -38,6 +38,7 @@
 		<section class="formRegister col-md-4 col-md-offset-4">
 			<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<h3 id="titleRegister">Register</h3>
+
 		
 					<?php 
 						if(isset($error))
@@ -45,10 +46,11 @@
 							echo "<p class='error'>$error</p>";
 						}
 					?>
-
 				<input id="iconUsername" type="text" value="Username" name="username">
 				<input id="iconEmail" type="text" value="Email" name="email">
 				<input id="iconPassword" type="password" value="Password" name="password">
+				<input id="radiobtn" type="radio" name="type">Consumer</input>
+				<input id="radiobtn" type="radio" name="type">Professional</input>
 				<input type="submit" value="Submit">
 			</form>
 		</section>

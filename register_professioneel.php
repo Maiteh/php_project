@@ -1,30 +1,24 @@
 <?php
-
+	
 	if (!empty($_POST)) 
 	{
 		include_once("classes/User.class.php");
-		
-		try
+
+		try 
 		{
 			$user = new User();
-			$user->Username = $_POST['username'];
-			$user->Email = $_POST['email'];
-			$user->Password = $_POST['password'];
-			$user->Register();
-
-			$user->canLogin();
-			session_start();
-			$_SESSION['username'] = $user->Username;
-			$_SESSION['loginSucces'] = true;
-			header("Location: dashboard.php");
+			$user->Username = $_POST['username']; 
+			$user->Email = $_POST['email'];	
+			$user->Password = $_POST['password'];	
 			
+			$user->Register();	
 		} 
 		catch (Exception $e) 
 		{
-			$error = $e->getMessage();
+			$error = $e->getMessage();		
 		}
-	}	
-	
+	}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +35,20 @@
 			<img class="img-responsive col-xs-12" src="images/logo.png" alt="">
 		</header>
 	
-		<section class="formLogin col-md-4 col-md-offset-4">
-			<form  action="" method="post">
-				<h3 id="titleRegister">Login</h3>
+		<section class="formRegister col-md-4 col-md-offset-4">
+			<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<h3 id="titleRegister">Register</h3>
+				<a href="register.php"> Particulier </a> | <a href="#"> Professioneel</a>
+				
+		
+					<?php 
+						if(isset($error))
+						{
+							echo "<p class='error'>$error</p>";
+						}
+					?>
 				<input id="iconUsername" type="text" value="Username" name="username">
+				<input id="iconEmail" type="text" value="Email" name="email">
 				<input id="iconPassword" type="password" value="Password" name="password">
 				<input type="submit" value="Submit">
 			</form>
@@ -59,5 +63,3 @@
 	
 </body>
 <html>
-
-=
