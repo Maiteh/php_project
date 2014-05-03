@@ -1,24 +1,64 @@
 <?php
+	// code in dit document altijd beperkt houden door klasses
 	
-	if (!empty($_POST)) 
+	if(!empty($_POST))
 	{
-		include_once("classes/User.class.php");
+	
+			include_once("classes/User.class.php");
+			$u = new User();
+			$u->Email=$_POST['email'];
+			$u->Password=$_POST['password'];
+			$u->Firstname=$_POST['firstname'];
+			$u->Lastname=$_POST['lastname'];
+			$u->Phone=$_POST['phone'];
+			$u->Type=$_POST['type'];
+			//$u->UsernameAvailable();
+			if(isset($u->error) && !empty($u->error)){
 
-		try 
-		{
-			$user = new User();
-			$user->Username = $_POST['username']; 
-			$user->Email = $_POST['email'];	
-			$user->Password = $_POST['password'];	
-			
-			$user->Register();	
-		} 
-		catch (Exception $e) 
-		{
-			$error = $e->getMessage();		
-		}
-	}
+				if(isset($u->error['errorEmail']))
+					{
+						$er_email = $u->error['errorEmail'];
+					}
 
+				if(isset($u->error['errorPassword']))
+					{
+						$er_password = $u->error['errorPassword'];
+					}
+
+				if(isset($u->error['errorFirstname']))
+					{
+						$er_firstname = $u->error['errorFirstname'];
+					}
+
+				if(isset($u->error['errorLastname']))
+					{
+						$er_lastname = $u->error['errorLastname'];
+					}
+
+				if(isset($u->error['errorPhone']))
+					{
+						$er_phone = $u->error['errorPhone'];
+					}
+
+				if(isset($u->error['errorType']))
+					{
+						$er_type = $u->error['errorType'];
+					}
+			}
+			else
+			{
+				$u->Save();	
+				if(isset($u->error['errorAvailable']))
+					{
+						$er_available = $u->error['errorAvailable'];
+					}else{
+						session_start();
+					$_SESSION['email'] = $u->Email;
+					//$_SESSION['loggedin'] = true;
+					header("Location: login.php");
+					}
+			}
+		}		
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +86,12 @@
 							echo "<p class='error'>$error</p>";
 						}
 					?>
-				<input id="iconUsername" type="text" value="Username" name="username">
 				<input id="iconEmail" type="text" value="Email" name="email">
 				<input id="iconPassword" type="password" value="Password" name="password">
-				<input id="radiobtn" type="radio" name="type">Consumer</input>
-				<input id="radiobtn" type="radio" name="type">Professional</input>
+				<input id="iconUsername" type="text" value="Firstname" name="firstname">
+				<input id="iconUsername" type="text" value="Lastname" name="lastname">
+				<input id="iconPhone" type="text" value="Phonenumber" name="phone">
+				<input id="radiobtn" type="radio" name="type">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
 		</section>
