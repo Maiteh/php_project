@@ -2,18 +2,19 @@
 	include_once("DB.class.php");
 
 	class User
-	{
-		private $m_sUsername;  
+	{ 
 		private $m_sEmail;
 		private $m_sPassword;
 		private $m_sSalt ="574987sfdkl;jksldj!@#@&%&ˆ*";
+		private $m_sFirstname;
+		private $m_sLastname;
+		private $m_sPhone;
+		private $m_bType;
+		public $error = array();
 
 		public function __set($p_sProperty, $p_vValue)
 		{
 			switch ($p_sProperty) {
-				case 'Username':
-				$this->m_sUsername = $p_vValue; 
-				break;
 
 				case 'Email':
 				$this->m_sEmail = $p_vValue; 
