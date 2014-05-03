@@ -62,6 +62,30 @@
 			$db->conn->query($sql);
 		}
 
+		public function canLogin()
+		{
+			$db = new DB();
+			$sql = "select * from tblUser
+					where username = '" . $db->conn->real_escape_string($this->m_sUsername) . "',
+					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "',
+					";
+
+			$result = $db->conn->query($sql);
+
+			if ($result) {
+				if (mysqli_num_rows($result) === 0) 
+				{
+					$available = true;
+				}
+				else
+				{
+					$available = false;
+				}
+			}
+			return $available;
+
+		}
+
 
 	}
 ?>

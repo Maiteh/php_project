@@ -1,10 +1,29 @@
 <?php
-	
-	include_once("classes/User.class.php");
 
-	session_start();
-	$_SESSION['email'] = $user->Email;
-	header("Location: backendRestaurant.php");
+	if (!empty($_POST)) 
+	{
+		include_once("classes/User.class.php");
+		
+		try
+		{
+			$user = new User();
+			$user->Username = $_POST['username'];
+			$user->Email = $_POST['email'];
+			$user->Password = $_POST['password'];
+			$user->Register();
+
+			$user->canLogin();
+			session_start();
+			$_SESSION['username'] = $user->Username;
+			$_SESSION['loginSucces'] = true;
+			header("Location: dashboard.php");
+			
+		} 
+		catch (Exception $e) 
+		{
+			$error = $e->getMessage();
+		}
+	}	
 	
 ?><!DOCTYPE html>
 <html lang="en">
@@ -40,3 +59,5 @@
 	
 </body>
 <html>
+
+=
