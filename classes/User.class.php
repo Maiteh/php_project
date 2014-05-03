@@ -5,11 +5,10 @@
 	{ 
 		private $m_sEmail;
 		private $m_sPassword;
-		private $m_sSalt ="574987sfdkl;jksldj!@#@&%&ˆ*";
 		private $m_sFirstname;
 		private $m_sLastname;
 		private $m_sPhone;
-		private $m_bType;
+		private $m_bAdmin;
 		public $error = array();
 
 		public function __set($p_sProperty, $p_vValue)
@@ -20,7 +19,9 @@
 				case 'Email':
 					if(!empty($p_vValue)){
 					$this->m_sEmail = $p_vValue;
-					}else{
+					}
+					else
+					{
 						$this->error["errorEmail"] = "Fill in an e-mail adress";
 					}
 					break;
@@ -32,14 +33,16 @@
 		 			}
 					else
 		 			{
-		 				$salt = "IMVYJFDFGDSRT546564FYFGH";
+		 				$salt = "IMVYJFDFGDprivate$574987sfdkl;jksldj!@#@&%&ˆ*SRT546564FYFGH";
 		 				$this->m_sPassword = md5($p_vValue.$salt);
 		 				break;
 		 			}
 		 		case 'Firstname':
 					if(!empty($p_vValue)){
 						$this->m_sFirstname = $p_vValue;
-					}else{
+					}
+					else
+					{
 						$this->error["errorFirstname"] = "Fill in your firstname";
 					}
 					break;
@@ -47,28 +50,33 @@
 				case 'Lastname':
 					if(!empty($p_vValue)){
 					$this->m_sLastname = $p_vValue;
-					}else{
+					}
+					else
+					{
 						$this->error["errorLastname"] = "Fill in your lastname";
 					}
 					break;
 
-				case 'phone':
+				case 'Phone':
 					if(!empty($p_vValue)){
 					$this->m_sPhone = $p_vValue;
-					}else{
+					}
+					else
+					{
 						$this->error["errorPhone"] = "Fill in your phonenumber.";
 					}
 					break;
 
-				case 'Type':
+				case 'Admin':
 					if($p_vValue == "on"){
-						$this->m_bType = "admin";
+						$this->m_bAdmin = "yess";
 					}
 					else
 					{
-						$this->m_bType = "user";
+						$this->m_bAdmin = "no";
 					}
 					break;
+			}
 		}
 
 		public function __get($p_sProperty)
@@ -91,8 +99,8 @@
 				case 'Phone':
 					return $this->m_sPhone;
 					break;
-				case 'Type':
-					return $this->m_bType;
+				case 'Admin':
+					return $this->m_bAdmin;
 					break;
 				
 			}
@@ -104,15 +112,15 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-			$sql = "insert into tblUser(
-						email, password, firstname, lastname, phone, type) 
+			$sql = "insert into tblKlant(
+						email, password, firstname, lastname, phone, admin) 
 					VALUES(
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
 						'" . $db->conn->real_escape_string($this->m_sPassword) . "', 
 						'" . $db->conn->real_escape_string($this->m_sFirstname) . ",
 						'" . $db->conn->real_escape_string($this->m_sLastname) . ",
 						'" . $db->conn->real_escape_string($this->m_sPhone) . ",
-						'" . $db->conn->real_escape_string($this->m_bType) . "
+						'" . $db->conn->real_escape_string($this->m_bAdmin) . "
 						')";
 			$db->conn->query($sql);
 		}
@@ -124,25 +132,27 @@
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblusers where email = '".$db->conn->real_escape_string($this->m_sEmail)."';";
+			$sql = "select * from tblKlant where email = '".$db->conn->real_escape_string($this->m_sEmail)."';";
 			$result = $db->conn->query($sql);
 			if($result)
 			{
 				$rows = mysql_num_rows($result);
-				if($rows === 0){
-				$available = true;
-			}
-			else
-			{
-				$available = false;	
-			}
+				if($rows === 0)
+				{
+					$available = true;
+				}
+				else
+				{
+					$available = false;	
+				}
 			return $available;
+			}
 		}
 
 		public function canLogin()
 		{
 			$db = new DB();
-			$sql = "select * from tblUser
+			$sql = "select * from tblKlant
 					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
 					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "',
 					";

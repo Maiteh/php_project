@@ -11,7 +11,7 @@
 			$u->Firstname=$_POST['firstname'];
 			$u->Lastname=$_POST['lastname'];
 			$u->Phone=$_POST['phone'];
-			$u->Type=$_POST['type'];
+			$u->Admin=$_POST['admin'];
 			//$u->UsernameAvailable();
 			if(isset($u->error) && !empty($u->error)){
 
@@ -42,7 +42,7 @@
 			}
 			else
 			{
-				$u->Save();	
+				$u->Register();	
 				if(isset($u->error['errorAvailable']))
 					{
 						$er_available = $u->error['errorAvailable'];
@@ -74,19 +74,12 @@
 			<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				<h3 id="titleRegister">Register</h3>
 
-		
-					<?php 
-						if(isset($error))
-						{
-							echo "<p class='error'>$error</p>";
-						}
-					?>
 				<input id="iconEmail" type="text" value="Email" name="email">
 				<input id="iconPassword" type="password" value="Password" name="password">
 				<input id="iconUsername" type="text" value="Firstname" name="firstname">
 				<input id="iconUsername" type="text" value="Lastname" name="lastname">
-				<input id="iconPhone" type="text" value="Phonenumber" name="phone">
-				<input id="checkbox" type="checkbox" name="type">restaurant owner</input>
+				<input id="iconPhone" type="text" value="Phone number" name="phone">
+				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
 		</section>
