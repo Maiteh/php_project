@@ -59,6 +59,16 @@
 						$this->error["errorPhone"] = "Fill in your phonenumber.";
 					}
 					break;
+
+				case 'Type':
+					if($p_vValue == "on"){
+						$this->m_bType = "admin";
+					}
+					else
+					{
+						$this->m_bType = "user";
+					}
+					break;
 		}
 
 		public function __get($p_sProperty)
@@ -66,37 +76,74 @@
 
 			switch ($p_sProperty) 
 			{
-				case 'Username':
-				return $this->m_sUsername;
-				break;
-				
 				case 'Email':
-				return $this->m_sEmail;
-				break;
-
+					return $this->m_sEmail;
+					break;
 				case 'Password':
-				return $this->m_sPassword;
-				break;
+					return $this->m_sPassword;
+					break;
+				case 'Firstname':
+					return $this->m_sFirstname;
+					break;
+				case 'Lastname':
+					return $this->m_sLastname;
+					break;
+				case 'Phone':
+					return $this->m_sPhone;
+					break;
+				case 'Type':
+					return $this->m_bType;
+					break;
+				
 			}
 		}
 
 		public function Register()
 		{
 			$db = new DB();
+			$isavailable= $this->EmailAvailable($db);
+			if($isavailable)
+			{
 			$sql = "insert into tblUser(
-						username, email, password) 
+						email, password, firstname, lastname, phone, type) 
 					VALUES(
-						'" . $db->conn->real_escape_string($this->m_sUsername) . "', 
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
-						'" . $db->conn->real_escape_string($this->m_sPassword) . "')";
+						'" . $db->conn->real_escape_string($this->m_sPassword) . "', 
+						'" . $db->conn->real_escape_string($this->m_sFirstname) . ",
+						'" . $db->conn->real_escape_string($this->m_sLastname) . ",
+						'" . $db->conn->real_escape_string($this->m_sPhone) . ",
+						'" . $db->conn->real_escape_string($this->m_bType) . "
+						')";
 			$db->conn->query($sql);
+		}
+		else
+		{
+			$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
+		}
+		}
+
+		public function EmailAvailable($db)
+		{
+			$sql = "select * from tblusers where email = '".$db->conn->real_escape_string($this->m_sEmail)."';";
+			$result = $db->conn->query($sql);
+			if($result)
+			{
+				$rows = mysql_num_rows($result);
+				if($rows === 0){
+				$available = true;
+			}
+			else
+			{
+				$available = false;	
+			}
+			return $available;
 		}
 
 		public function canLogin()
 		{
 			$db = new DB();
 			$sql = "select * from tblUser
-					where username = '" . $db->conn->real_escape_string($this->m_sUsername) . "',
+					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
 					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "',
 					";
 
@@ -105,14 +152,14 @@
 			if ($result) {
 				if (mysqli_num_rows($result) === 0) 
 				{
-					$available = true;
+					$exists = true;
 				}
 				else
 				{
-					$available = false;
+					$exists = false;
 				}
 			}
-			return $available;
+			return $exists;
 
 		}
 

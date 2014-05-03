@@ -39,11 +39,6 @@
 					{
 						$er_phone = $u->error['errorPhone'];
 					}
-
-				if(isset($u->error['errorType']))
-					{
-						$er_type = $u->error['errorType'];
-					}
 			}
 			else
 			{
@@ -91,7 +86,7 @@
 				<input id="iconUsername" type="text" value="Firstname" name="firstname">
 				<input id="iconUsername" type="text" value="Lastname" name="lastname">
 				<input id="iconPhone" type="text" value="Phonenumber" name="phone">
-				<input id="radiobtn" type="radio" name="type">restaurant owner</input>
+				<input id="checkbox" type="checkbox" name="type">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
 		</section>
