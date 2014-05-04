@@ -120,7 +120,8 @@
 						'" . $db->conn->real_escape_string($this->m_sFirstname) . "',
 						'" . $db->conn->real_escape_string($this->m_sLastname) . "',
 						'" . $db->conn->real_escape_string($this->m_sPhone) . "',
-						'" . $db->conn->real_escape_string($this->m_sAdmin) . "')
+						'" . $db->conn->real_escape_string($this->m_bAdmin) . "'
+						)
 					";
 			$db->conn->query($sql);
 			echo $sql;

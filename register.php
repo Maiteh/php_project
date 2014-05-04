@@ -11,37 +11,41 @@
 			$u->Firstname=$_POST['firstname'];
 			$u->Lastname=$_POST['lastname'];
 			$u->Phone=$_POST['phone'];
-			//$u->Admin=$_POST['admin'];
+			$u->Admin= "";
 			//$u->UsernameAvailable();
 			if(isset($u->error) && !empty($u->error)){
 
 				if(isset($u->error['errorEmail']))
-					{
-						$er_email = $u->error['errorEmail'];
-					}
+				{
+					$er_email = $u->error['errorEmail'];
+				}
 
 				if(isset($u->error['errorPassword']))
-					{
-						$er_password = $u->error['errorPassword'];
-					}
+				{
+					$er_password = $u->error['errorPassword'];					
+				}
 
 				if(isset($u->error['errorFirstname']))
-					{
-						$er_firstname = $u->error['errorFirstname'];
-					}
+				{
+					$er_firstname = $u->error['errorFirstname'];
+				}
 
 				if(isset($u->error['errorLastname']))
-					{
-						$er_lastname = $u->error['errorLastname'];
-					}
+				{
+					$er_lastname = $u->error['errorLastname'];
+				}
 
 				if(isset($u->error['errorPhone']))
-					{
-						$er_phone = $u->error['errorPhone'];
-					}
+				{
+					$er_phone = $u->error['errorPhone'];
+				}
 			}
 			else
 			{
+				if(!empty($_POST['admin']))
+				{
+					$u->Admin = $_POST['admin'];
+				}
 				$u->Register();	
 				if(isset($u->error['errorAvailable']))
 					{
