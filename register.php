@@ -71,14 +71,14 @@
 		</header>
 	
 		<section class="formRegister col-md-4 col-md-offset-4">
-			<form  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+			<form  action="" method="post">
 				<h3 id="titleRegister">Register</h3>
 
 				<input id="iconEmail" type="text" value="Email" name="email">
 				<input id="iconPassword" type="password" value="Password" name="password">
 				<input id="iconUsername" type="text" value="Firstname" name="firstname">
 				<input id="iconUsername" type="text" value="Lastname" name="lastname">
-				<input id="iconPhone" type="text" value="Phone number" name="phone">
+				<input id="iconUsername" type="text" value="Phone number" name="phone">
 				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
