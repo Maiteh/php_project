@@ -69,7 +69,7 @@
 
 				case 'Admin':
 					if($p_vValue == "on"){
-						$this->m_bAdmin = "yess";
+						$this->m_bAdmin = "yes";
 					}
 					else
 					{
