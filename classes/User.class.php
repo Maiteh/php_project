@@ -112,17 +112,18 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-			$sql = "insert into tblKlant(
+			$sql = "insert into tblklant(
 						email, password, firstname, lastname, phone, admin) 
 					VALUES(
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
 						'" . $db->conn->real_escape_string($this->m_sPassword) . "', 
-						'" . $db->conn->real_escape_string($this->m_sFirstname) . ",
-						'" . $db->conn->real_escape_string($this->m_sLastname) . ",
-						'" . $db->conn->real_escape_string($this->m_sPhone) . ",
-						'" . $db->conn->real_escape_string($this->m_bAdmin) . "
-						')";
+						'" . $db->conn->real_escape_string($this->m_sFirstname) . "',
+						'" . $db->conn->real_escape_string($this->m_sLastname) . "',
+						'" . $db->conn->real_escape_string($this->m_sPhone) . "',
+						'" . $db->conn->real_escape_string($this->m_sAdmin) . "')
+					";
 			$db->conn->query($sql);
+			echo $sql;
 		}
 		else
 		{
@@ -132,11 +133,13 @@
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblKlant where email = '".$db->conn->real_escape_string($this->m_sEmail)."';";
+			$sql = "select * from tblklant 
+					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
+					";
 			$result = $db->conn->query($sql);
 			if($result)
 			{
-				$rows = mysql_num_rows($result);
+				$rows = mysqli_num_rows($result);
 				if($rows === 0)
 				{
 					$available = true;
@@ -152,9 +155,9 @@
 		public function canLogin()
 		{
 			$db = new DB();
-			$sql = "select * from tblKlant
+			$sql = "select * from tblklant
 					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
-					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "',
+					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "'
 					";
 
 			$result = $db->conn->query($sql);

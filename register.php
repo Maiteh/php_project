@@ -11,7 +11,7 @@
 			$u->Firstname=$_POST['firstname'];
 			$u->Lastname=$_POST['lastname'];
 			$u->Phone=$_POST['phone'];
-			$u->Admin=$_POST['admin'];
+			//$u->Admin=$_POST['admin'];
 			//$u->UsernameAvailable();
 			if(isset($u->error) && !empty($u->error)){
 
@@ -50,7 +50,7 @@
 						session_start();
 					$_SESSION['email'] = $u->Email;
 					//$_SESSION['loggedin'] = true;
-					header("Location: login.php");
+					//header("Location: login.php");
 					}
 			}
 		}		
@@ -74,11 +74,11 @@
 			<form  action="" method="post">
 				<h3 id="titleRegister">Register</h3>
 
-				<input id="iconEmail" type="text" value="Email" name="email">
-				<input id="iconPassword" type="password" value="Password" name="password">
-				<input id="iconUsername" type="text" value="Firstname" name="firstname">
-				<input id="iconUsername" type="text" value="Lastname" name="lastname">
-				<input id="iconUsername" type="text" value="Phone number" name="phone">
+				<input id="iconEmail" type="text" name="email">
+				<input id="iconPassword" type="password" name="password">
+				<input id="iconUsername" type="text" name="firstname">
+				<input id="iconUsername" type="text" name="lastname">
+				<input id="iconPhone" type="text" name="phone">
 				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
