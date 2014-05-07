@@ -6,12 +6,11 @@
 
 		try 
 		{
-			$user = new User();
-			$user->Username = $_POST['username']; 
-			$user->Email = $_POST['email'];	
-			$user->Password = $_POST['password'];	
+			$u = new User();
+			$u->Email = $_POST['email'];	
+			$u->Password = $_POST['password'];	
 			
-			$user->Register();	
+			$u->Register();	
 		} 
 		catch (Exception $e) 
 		{
@@ -47,10 +46,10 @@
 							echo "<p class='error'>$error</p>";
 						}
 					?>
-				<input id="iconUsername" type="text" value="Username" name="username">
-				<input id="iconEmail" type="text" value="Email" name="email">
-				<input id="iconPassword" type="password" value="Password" name="password">
-				<input type="submit" value="Submit">
+		
+				<input id="iconEmail" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
+				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
+				<input type="submit" value="Register" value="btnRegister">
 			</form>
 		</section>
 	

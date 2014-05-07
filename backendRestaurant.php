@@ -1,8 +1,5 @@
 <?php
 	
-	// session_start();
-	// session_destroy();
-	// header("Location: login.php");
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,7 +31,6 @@
 						<li><a href="#">Menu beheer</a></li>
 						<li><a href="#">Reservaties</a></li>
 					</ul>	
-					<h4>Welcom</h4>
 					<a href="#"><img src="images/logout.png" alt="logout" class="navbar-form pull-right logout" ></a>
 				</div>
 			</nav>

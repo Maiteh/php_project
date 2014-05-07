@@ -1,31 +1,34 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4135
-#
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
-#
-# Host: localhost (MySQL 5.5.34)
-# Database: JustInTime
-# Generation Time: 2014-04-28 12:15:42 +0000
-# ************************************************************
+-- phpMyAdmin SQL Dump
+-- version 4.0.4
+-- http://www.phpmyadmin.net
+--
+-- Machine: localhost
+-- Genereertijd: 04 mei 2014 om 19:50
+-- Serverversie: 5.6.12-log
+-- PHP-versie: 5.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Databank: `justintime`
+--
+CREATE DATABASE IF NOT EXISTS `justintime` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `justintime`;
 
-# Dump of table tblBestelling
-# ------------------------------------------------------------
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `tblBestelling`;
+--
+-- Tabelstructuur voor tabel `tblbestelling`
+--
 
-CREATE TABLE `tblBestelling` (
+CREATE TABLE IF NOT EXISTS `tblbestelling` (
   `Bestelling_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Bestelling_AantalBestellingen` int(255) NOT NULL,
   `Bestelling_BestellingGeplaatst` int(255) NOT NULL,
@@ -33,32 +36,30 @@ CREATE TABLE `tblBestelling` (
   `Tafel_Id` int(255) NOT NULL,
   PRIMARY KEY (`Bestelling_Id`),
   KEY `Tafel_Id` (`Tafel_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblbestellingmenu`
+--
 
-# Dump of table tblBestellingMenu
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblBestellingMenu`;
-
-CREATE TABLE `tblBestellingMenu` (
+CREATE TABLE IF NOT EXISTS `tblbestellingmenu` (
   `BestellingMenu_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Bestelling_Id` int(11) NOT NULL,
   `Menu_Id` int(11) NOT NULL,
   PRIMARY KEY (`BestellingMenu_Id`),
   UNIQUE KEY `Bestelling_Id` (`Bestelling_Id`),
   UNIQUE KEY `Menu_Id` (`Menu_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tbleigenaar`
+--
 
-# Dump of table tblEigenaar
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblEigenaar`;
-
-CREATE TABLE `tblEigenaar` (
+CREATE TABLE IF NOT EXISTS `tbleigenaar` (
   `Eigenaar_Id` int(11) NOT NULL AUTO_INCREMENT,
   `Eigenaar_Naam` varchar(255) NOT NULL DEFAULT '',
   `Eigenaar_Voornaam` varchar(255) NOT NULL DEFAULT '',
@@ -72,63 +73,61 @@ CREATE TABLE `tblEigenaar` (
   `RestaurantEigenaar_Id` int(11) NOT NULL,
   PRIMARY KEY (`Eigenaar_Id`),
   KEY `RestaurantEigenaar_Id` (`RestaurantEigenaar_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblfeedback`
+--
 
-# Dump of table tblFeedback
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblFeedback`;
-
-CREATE TABLE `tblFeedback` (
+CREATE TABLE IF NOT EXISTS `tblfeedback` (
   `Feedback_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Feedback_Feedback` varchar(500) NOT NULL DEFAULT '',
   `Feedback_Rating` int(11) NOT NULL,
   `Klant_Id` int(11) NOT NULL,
   PRIMARY KEY (`Feedback_Id`),
   KEY `Klant_Id` (`Klant_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblklant`
+--
 
-# Dump of table tblKlant
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblKlant`;
-
-CREATE TABLE `tblKlant` (
+CREATE TABLE IF NOT EXISTS `tblklant` (
   `Klant_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Klant_Naam` varchar(255) NOT NULL,
-  `Klant_Voornaam` varchar(255) NOT NULL,
-  `Klant_GSM` varchar(255) NOT NULL,
-  `Klant_Email` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `admin` varchar(5) NOT NULL,
   PRIMARY KEY (`Klant_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblmenu`
+--
 
-# Dump of table tblMenu
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblMenu`;
-
-CREATE TABLE `tblMenu` (
+CREATE TABLE IF NOT EXISTS `tblmenu` (
   `Menu_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Menu_Gerecht` varchar(255) NOT NULL DEFAULT '',
   `Menu_Beschrijving` varchar(255) NOT NULL DEFAULT '',
   `Menu_Prijs` int(255) NOT NULL,
   PRIMARY KEY (`Menu_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblreservatie`
+--
 
-# Dump of table tblReservatie
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblReservatie`;
-
-CREATE TABLE `tblReservatie` (
+CREATE TABLE IF NOT EXISTS `tblreservatie` (
   `Reservatie_Id` int(11) NOT NULL AUTO_INCREMENT,
   `Reservatie_Datum` date NOT NULL,
   `Reservatie_Uur` time NOT NULL,
@@ -136,16 +135,15 @@ CREATE TABLE `tblReservatie` (
   `Klant_Id` int(11) NOT NULL,
   PRIMARY KEY (`Reservatie_Id`),
   KEY `Klant_Id` (`Klant_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblrestaurant`
+--
 
-# Dump of table tblRestaurant
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblRestaurant`;
-
-CREATE TABLE `tblRestaurant` (
+CREATE TABLE IF NOT EXISTS `tblrestaurant` (
   `Restaurant_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Restaurant_Naam` varchar(255) NOT NULL DEFAULT '',
   `Restaurant_Voornaam` varchar(255) NOT NULL DEFAULT '',
@@ -165,28 +163,26 @@ CREATE TABLE `tblRestaurant` (
   KEY `Tafel_Id` (`Tafel_Id`),
   KEY `Reservatie_Id` (`Reservatie_Id`),
   KEY `Menu_Id` (`Menu_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tblrestauranteigenaar`
+--
 
-# Dump of table tblRestaurantEigenaar
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblRestaurantEigenaar`;
-
-CREATE TABLE `tblRestaurantEigenaar` (
+CREATE TABLE IF NOT EXISTS `tblrestauranteigenaar` (
   `RestaurantEigenaar_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`RestaurantEigenaar_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
+--
+-- Tabelstructuur voor tabel `tbltafel`
+--
 
-# Dump of table tblTafel
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tblTafel`;
-
-CREATE TABLE `tblTafel` (
+CREATE TABLE IF NOT EXISTS `tbltafel` (
   `Tafel_Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `Tafel_Nummering` int(255) NOT NULL,
   `Tafel_AantalPersonen` int(25) NOT NULL,
@@ -194,14 +190,8 @@ CREATE TABLE `tblTafel` (
   `Reservatie_Id` int(11) NOT NULL,
   PRIMARY KEY (`Tafel_Id`),
   KEY `Reservatie_Id` (`Reservatie_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
