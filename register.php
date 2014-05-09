@@ -78,11 +78,18 @@
 			<form  action="" method="post">
 				<h3 id="titleRegister">Register</h3>
 
+				<p class="error"><?php if (isset($er_email)) { echo $er_email;} 
+									   if (isset($er_available)) { echo $er_available;}?></p>
 				<input id="iconEmail" type="text" name="email">
+				<p class="error"><?php if (isset($er_password)) { echo $er_password;} ?></p>
 				<input id="iconPassword" type="password" name="password">
+				<p class="error"><?php if (isset($er_firstname)) { echo $er_firstname;} ?></p>
 				<input id="iconUsername" type="text" name="firstname">
+				<p class="error"><?php if (isset($er_lastname)) { echo $er_lastname;} ?></p>
 				<input id="iconUsername" type="text" name="lastname">
+				<p class="error"><?php if (isset($er_phone)) { echo $er_phone;} ?></p>
 				<input id="iconPhone" type="text" name="phone">
+				
 				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
 				<input type="submit" value="Submit">
 			</form>
