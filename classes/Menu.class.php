@@ -68,7 +68,7 @@
 		public function getAll()
 		{
 		    $db = new Db();
-        	$sql = "select * tbl_menu";
+        	$sql = "select * from tblrestaurant";
         	$result = $db->conn->query($sql);
         	return $result;
 		}
