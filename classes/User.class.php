@@ -125,11 +125,11 @@
 					";
 			$db->conn->query($sql);
 			echo $sql;
-		}
-		else
-		{
-			$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
-		}
+			}
+			else
+			{
+				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
+			}
 		}
 
 		public function EmailAvailable($db)
