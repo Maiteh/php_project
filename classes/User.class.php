@@ -59,6 +59,16 @@
 					}
 					break;
 
+				case 'Lastname':
+					if(!empty($p_vValue)){
+					$this->m_sLastname = $p_vValue;
+					}
+					else
+					{
+						$this->error["errorLastname"] = "Fill in your lastname";
+					}
+					break;
+
 				case 'Phone':
 					if(!empty($p_vValue)){
 					$this->m_sPhone = $p_vValue;
@@ -126,12 +136,13 @@
 						)
 					";
 			$db->conn->query($sql);
-			echo $sql;
+			//echo $sql;
 			}
 			else
 			{
 				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
 			}
+
 		}
 
 		public function EmailAvailable($db)
@@ -140,7 +151,6 @@
 					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
 					";
 			$result = $db->conn->query($sql);
-			
 			if($result)
 			{
 				$rows = mysqli_num_rows($result);
@@ -160,10 +170,12 @@
 		{
 			$db = new Db();
 			$sql = "select * from tblgebruiker 
-					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' and
-					password='".$db->conn->real_escape_string($this->m_sPassword)."';";
+					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+					and
+					password='".$db->conn->real_escape_string($this->m_sPassword)."'
+					";
 			
-			echo $sql;
+			// $sql;
 
 			$result = $db->conn->query($sql);
 
@@ -180,7 +192,7 @@
 			{	
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
-		}		
+		}
 	}
 ?>
 
