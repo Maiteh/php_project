@@ -7,17 +7,24 @@
 	{
 		try
 		{
-			include 'classes/User.class.php';
+			include_once ("classes/User.class.php");
 			$u = new User();
-			$u->Email = $_POST['email'];
-			$u->Password = $_POST['password'];
-			$u->canLoginKlant();			
-		} 
+			$u->Email=$_POST['email'];
+			$u->Password=$_POST['password'];
+
+			//var_dump($user);
+
+			$u->canLogin();
+
+			//($user);
+
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 
 		{
 			$error = $e->getMessage();
 		}
 	}
+	
 	
 ?><!DOCTYPE html>
 <html lang="en">
@@ -37,20 +44,18 @@
 	
 		<section class="formLogin col-md-4 col-md-offset-4">
 			<form  action="" method="post">
-				<h3 id="titleRegister">Login</h3>
 
 				<?php 
 					if(isset($error))
 					{
 						echo "<p class='error'>$error</p>";
 					}
-
-					echo "<p class='error'>$feedback</p>";
 				?>
 
-				<input id="iconEmail" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
+				<h3 id="titleRegister">Login</h3>
+				<input id="iconUsername" type="text" value="Username" name="username" onfocus="if(this.value == 'Email') { this.value = ''; }">
 				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
-				<input type="submit" value="Login" value="btnLogin">
+				<input type="submit" value="Submit" name="btnLogin">
 			</form>
 		</section>
 	
