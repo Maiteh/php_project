@@ -38,10 +38,7 @@
 		 				$this->m_sPassword = md5($p_vValue.$salt);
 		 				break;
 		 			}
-<<<<<<< HEAD
-=======
 
->>>>>>> sub-branch-Grace
 		 		case 'Firstname':
 					if(!empty($p_vValue)){
 						$this->m_sFirstname = $p_vValue;
@@ -51,7 +48,6 @@
 						$this->error["errorFirstname"] = "Fill in your firstname";
 					}
 					break;
-<<<<<<< HEAD
 
 				case 'Lastname':
 					if(!empty($p_vValue)){
@@ -63,8 +59,6 @@
 					}
 					break;
 
-=======
-
 				case 'Lastname':
 					if(!empty($p_vValue)){
 					$this->m_sLastname = $p_vValue;
@@ -75,7 +69,6 @@
 					}
 					break;
 
->>>>>>> sub-branch-Grace
 				case 'Phone':
 					if(!empty($p_vValue)){
 					$this->m_sPhone = $p_vValue;
@@ -149,7 +142,7 @@
 			{
 				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
 			}
-<<<<<<< HEAD
+
 		}
 
 		public function EmailAvailable($db)
@@ -199,9 +192,6 @@
 			{	
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
-=======
->>>>>>> sub-branch-Grace
-		}
 
 		public function EmailAvailable($db)
 		{
