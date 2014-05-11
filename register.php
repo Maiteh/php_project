@@ -35,8 +35,6 @@
 					$er_lastname = $u->error['errorLastname'];
 				}
 
-
-
 				if(isset($u->error['errorFirstname']))
 				{
 					$er_firstname = $u->error['errorFirstname'];
@@ -117,43 +115,6 @@
 				<input id="iconPhone" type="text" name="phone" placeholder="phone"  value="<?php if(isset($_POST['phone'])){ echo $_POST['phone'];} ?>">
 				
 				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
-
-				<p class="error"><?php if (isset($er_available)) { echo $er_available; echo "hallo test122";}
-										if (isset($er_email)) { echo $er_email; echo "hallo test122";}?></p>
-				<input id="iconEmail" type="text" name="email" placeholder="email"  value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>">
-				<p class="error"><?php if (isset($er_password)) { echo $er_password;} ?></p>
-				<input id="iconPassword" type="password" name="password"  placeholder="password"  value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>">
-				<p class="error"><?php if (isset($er_firstname)) { echo $er_firstname;} ?></p>
-				<input id="iconUsername" type="text" name="firstname" placeholder="firstname"  value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'] ?>">
-				<p class="error"><?php if (isset($er_lastname)) { echo $er_lastname;} ?></p>
-				<input id="iconUsername" type="text" name="lastname" placeholder="lastname"  value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'] ?>">
-				<p class="error"><?php if (isset($er_phone)) { echo $er_phone;} ?></p>
-				<input id="iconPhone" type="text" name="phone" placeholder="phone"  value="<?php if(isset($_POST['phone'])) echo $_POST['phone'] ?>">
-				
-				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
-
-				<p class="error">
-					<?php if (isset($er_available)) { 
-							echo $er_available; echo "hallo test122";}
-						if (isset($er_email)) { 
-							echo $er_email; echo "hallo test122";}?></p>
-					
-						<input id="iconEmail" type="text" name="email" placeholder="Email"  value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>">
-						<p class="error"><?php if (isset($er_password)) { echo $er_password;} ?></p>
-						
-						<input id="iconPassword" type="password" name="password"  placeholder="Password"  value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>">
-						<p class="error"><?php if (isset($er_firstname)) { echo $er_firstname;} ?></p>
-						
-						<input id="iconUsername" type="text" name="firstname" placeholder="Firstname"  value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'] ?>">
-						<p class="error"><?php if (isset($er_lastname)) { echo $er_lastname;} ?></p>
-						
-						<input id="iconUsername" type="text" name="lastname" placeholder="Lastname"  value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'] ?>">
-						<p class="error"><?php if (isset($er_phone)) { echo $er_phone;} 
-					?>
-				</p>
-				<input id="iconPhone" type="text" name="phone" placeholder="Phone"  value="<?php if(isset($_POST['phone'])) echo $_POST['phone'] ?>">
-				
-				<input id="checkbox" type="checkbox" name="admin">Restaurant owner</input>
 
 				<input type="submit" value="Submit">
 			</form>

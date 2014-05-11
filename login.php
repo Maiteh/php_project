@@ -54,11 +54,6 @@
 				<h3 id="titleRegister">Login</h3>
 
 				<input id="iconUsername" type="text" value="<?php if(isset($_POST['email'])){ echo $_POST['email']; } else { echo "E-mail"; } ?>" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
-
-				<input id="iconUsername" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
-
-				<input id="iconUsername" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
-
 				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
 				<input type="submit" value="Submit" name="btnLogin">
 			</form>
