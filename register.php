@@ -24,6 +24,7 @@
 				{
 					$er_password = $u->error['errorPassword'];					
 				}
+<<<<<<< HEAD
 
 				if(isset($u->error['errorFirstname']))
 				{
@@ -35,6 +36,19 @@
 					$er_lastname = $u->error['errorLastname'];
 				}
 
+=======
+
+				if(isset($u->error['errorFirstname']))
+				{
+					$er_firstname = $u->error['errorFirstname'];
+				}
+
+				if(isset($u->error['errorLastname']))
+				{
+					$er_lastname = $u->error['errorLastname'];
+				}
+
+>>>>>>> sub-branch-Grace
 				if(isset($u->error['errorPhone']))
 				{
 					$er_phone = $u->error['errorPhone'];
@@ -92,6 +106,7 @@
 			<form  action="" method="post">
 				<h3 id="titleRegister">Register</h3>
 
+<<<<<<< HEAD
 				<p class="error"><?php if (isset($er_available)) { echo $er_available; echo "hallo test122";}
 										if (isset($er_email)) { echo $er_email;}?></p>
 				<input id="iconEmail" type="text" name="email" placeholder="email"  value="<?php if(isset($_POST['email'])){ echo $_POST['email'];} ?>">
@@ -105,6 +120,46 @@
 				<input id="iconPhone" type="text" name="phone" placeholder="phone"  value="<?php if(isset($_POST['phone'])){ echo $_POST['phone'];} ?>">
 				
 				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
+=======
+<<<<<<< HEAD
+				<p class="error"><?php if (isset($er_available)) { echo $er_available; echo "hallo test122";}
+										if (isset($er_email)) { echo $er_email; echo "hallo test122";}?></p>
+				<input id="iconEmail" type="text" name="email" placeholder="email"  value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>">
+				<p class="error"><?php if (isset($er_password)) { echo $er_password;} ?></p>
+				<input id="iconPassword" type="password" name="password"  placeholder="password"  value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>">
+				<p class="error"><?php if (isset($er_firstname)) { echo $er_firstname;} ?></p>
+				<input id="iconUsername" type="text" name="firstname" placeholder="firstname"  value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'] ?>">
+				<p class="error"><?php if (isset($er_lastname)) { echo $er_lastname;} ?></p>
+				<input id="iconUsername" type="text" name="lastname" placeholder="lastname"  value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'] ?>">
+				<p class="error"><?php if (isset($er_phone)) { echo $er_phone;} ?></p>
+				<input id="iconPhone" type="text" name="phone" placeholder="phone"  value="<?php if(isset($_POST['phone'])) echo $_POST['phone'] ?>">
+				
+				<input id="checkbox" type="checkbox" name="admin">restaurant owner</input>
+=======
+				<p class="error">
+					<?php if (isset($er_available)) { 
+							echo $er_available; echo "hallo test122";}
+						if (isset($er_email)) { 
+							echo $er_email; echo "hallo test122";}?></p>
+					
+						<input id="iconEmail" type="text" name="email" placeholder="Email"  value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>">
+						<p class="error"><?php if (isset($er_password)) { echo $er_password;} ?></p>
+						
+						<input id="iconPassword" type="password" name="password"  placeholder="Password"  value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>">
+						<p class="error"><?php if (isset($er_firstname)) { echo $er_firstname;} ?></p>
+						
+						<input id="iconUsername" type="text" name="firstname" placeholder="Firstname"  value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'] ?>">
+						<p class="error"><?php if (isset($er_lastname)) { echo $er_lastname;} ?></p>
+						
+						<input id="iconUsername" type="text" name="lastname" placeholder="Lastname"  value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'] ?>">
+						<p class="error"><?php if (isset($er_phone)) { echo $er_phone;} 
+					?>
+				</p>
+				<input id="iconPhone" type="text" name="phone" placeholder="Phone"  value="<?php if(isset($_POST['phone'])) echo $_POST['phone'] ?>">
+				
+				<input id="checkbox" type="checkbox" name="admin">Restaurant owner</input>
+>>>>>>> 7852f87ae5e376ece92cb38a33b938c492de21ca
+>>>>>>> sub-branch-Grace
 				<input type="submit" value="Submit">
 			</form>
 		</section>

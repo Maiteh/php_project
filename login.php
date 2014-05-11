@@ -15,14 +15,30 @@
 			//var_dump($user);
 
 			$u->canLogin();
+<<<<<<< HEAD
 			header("Location: index.php");
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> sub-branch-Grace
+>>>>>>> 3b92111e9e20d0ae5cbc8222ad86fb29e08572c4
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 
 		{
 			$error = $e->getMessage();
 		}
 	}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+=======
+	
+	
+>>>>>>> sub-branch-Grace
+>>>>>>> 3b92111e9e20d0ae5cbc8222ad86fb29e08572c4
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +66,15 @@
 				?>
 
 				<h3 id="titleRegister">Login</h3>
+<<<<<<< HEAD
 				<input id="iconUsername" type="text" value="<?php if(isset($_POST['email'])){ echo $_POST['email']; } else { echo "E-mail"; } ?>" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
+<<<<<<< HEAD
 
+=======
+=======
+				<input id="iconUsername" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
+>>>>>>> sub-branch-Grace
+>>>>>>> 3b92111e9e20d0ae5cbc8222ad86fb29e08572c4
 				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
 				<input type="submit" value="Submit" name="btnLogin">
 			</form>
