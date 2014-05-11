@@ -113,35 +113,33 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-				$sql = "insert into tblklant(
-							email, password, firstname, lastname, phone, admin) 
-						VALUES(
-							'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
-							'" . $db->conn->real_escape_string($this->m_sPassword) . "', 
-							'" . $db->conn->real_escape_string($this->m_sFirstname) . "',
-							'" . $db->conn->real_escape_string($this->m_sLastname) . "',
-							'" . $db->conn->real_escape_string($this->m_sPhone) . "',
-							'" . $db->conn->real_escape_string($this->m_bAdmin) . "'
-							)
-						";
-				$db->conn->query($sql);
-				echo $sql;
-				header("Location: frontend.php");
+			$sql = "insert into tblgebruiker(
+						email, password, firstname, lastname, phone, admin) 
+					VALUES(
+						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
+						'" . $db->conn->real_escape_string($this->m_sPassword) . "', 
+						'" . $db->conn->real_escape_string($this->m_sFirstname) . "',
+						'" . $db->conn->real_escape_string($this->m_sLastname) . "',
+						'" . $db->conn->real_escape_string($this->m_sPhone) . "',
+						'" . $db->conn->real_escape_string($this->m_bAdmin) . "'
+						)
+					";
+			$db->conn->query($sql);
+			echo $sql;
 			}
 			else
 			{
 				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
 			}
-
-			
 		}
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblklant 
+			$sql = "select * from tblgebruiker 
 					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
 					";
 			$result = $db->conn->query($sql);
+			
 			if($result)
 			{
 				$rows = mysqli_num_rows($result);
@@ -157,32 +155,33 @@
 			}
 		}
 
-		public function canLoginKlant()
+		public function canLogin()
 		{
 			$db = new Db();
 			$salt = "IMVYJFDFGDprivate$574987sfdkl;jksldj!@#@&%&ˆ*SRT546564FYFGH";
-			$sql = "select * from tblklant 
-					where email='".$db->conn->real_escape_string($this->m_sEmail)."' and
+			$sql = "select * from tblgebruiker 
+					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' and
 					password='".$db->conn->real_escape_string(md5($this->m_sPassword . $salt))."';";
-	
-			$result = $db->conn->query($sql);
+			
+			// $sql;
 
-			echo $sql;
+			$result = $db->conn->query($sql);
 
 			if($result->num_rows == 1)
 			{
 				$db->conn->query($sql);
 				$_SESSION['loggedin'] = TRUE;
 				$_SESSION['email'] = $this->m_sEmail;
+				//header(""); -> redirecten naar 
 
-				header("Location: frontend.php");
+				echo "tis gelukt";
 			}
 			else
 			{
-				throw new Exception("Email or password is incorrect");
-			}		
-		}
+				throw new Exception("Inlog gegevens zijn niet correct");
+			}	
 
+		]	
 
 
 	}
