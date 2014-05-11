@@ -1,30 +1,29 @@
 <?php
 
-	if (!empty($_POST)) 
+	session_start();
+	$_SESSION['loggedin'] = FALSE;	
+
+	if (!empty($_POST['btnLogin'])) 
 	{
-		include_once("classes/User.class.php");
-		
 		try
 		{
-			$user = new User();
-			$user->Username = $_POST['username'];
-			$user->Email = $_POST['email'];
-			$user->Password = $_POST['password'];
-			$user->Register();
+			include_once ("classes/User.class.php");
+			$u = new User();
+			$u->Email=$_POST['email'];
+			$u->Password=$_POST['password'];
 
-			$user->canLogin();
-			session_start();
-			$_SESSION['username'] = $user->Username;
-			$_SESSION['loginSucces'] = true;
-			header("Location: dashboard.php");
-			
-		} 
+			//var_dump($user);
+
+			$u->canLogin();
+			header("Location: index.php");
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 
 		{
 			$error = $e->getMessage();
 		}
-	}	
-	
+	}
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +42,18 @@
 	
 		<section class="formLogin col-md-4 col-md-offset-4">
 			<form  action="" method="post">
+
+				<?php 
+					if(isset($error))
+					{
+						echo "<p class='error'>$error</p>";
+					}
+				?>
+
 				<h3 id="titleRegister">Login</h3>
-				<input id="iconUsername" type="text" value="Username" name="username">
-				<input id="iconPassword" type="password" value="Password" name="password">
-				<input type="submit" value="Submit">
+				<input id="iconUsername" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
+				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
+				<input type="submit" value="Submit" name="btnLogin">
 			</form>
 		</section>
 	
@@ -59,5 +66,3 @@
 	
 </body>
 <html>
-
-=

@@ -156,11 +156,10 @@
 		public function canLogin()
 		{
 			$db = new Db();
-			$salt = "IMVYJFDFGDprivate$574987sfdkl;jksldj!@#@&%&ˆ*SRT546564FYFGH";
 			$sql = "select * from tblgebruiker 
 					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
 					and
-					password='".$db->conn->real_escape_string(md5($this->m_sPassword . $salt))."'
+					password='".$db->conn->real_escape_string($this->m_sPassword)."'
 					";
 			
 			// $sql;
