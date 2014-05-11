@@ -38,6 +38,7 @@
 		 				$this->m_sPassword = md5($p_vValue.$salt);
 		 				break;
 		 			}
+
 		 		case 'Firstname':
 					if(!empty($p_vValue)){
 						$this->m_sFirstname = $p_vValue;
@@ -178,11 +179,17 @@
 			}
 			else
 			{
-				throw new Exception("Inlog gegevens zijn niet correct");
-			}	
-
-		]	
-
-
+				throw new Exception("Sorry, your email or password is incorrect");
+			}
+		}		
 	}
 ?>
+
+
+
+
+
+
+
+
+
