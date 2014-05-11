@@ -15,12 +15,6 @@
 			//var_dump($user);
 
 			$u->canLogin();
-<<<<<<< HEAD
-
-			//($user);
-
-=======
->>>>>>> 7852f87ae5e376ece92cb38a33b938c492de21ca
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 
 		{
@@ -56,11 +50,7 @@
 				?>
 
 				<h3 id="titleRegister">Login</h3>
-<<<<<<< HEAD
-				<input id="iconUsername" type="text" value="Username" name="username" onfocus="if(this.value == 'Email') { this.value = ''; }">
-=======
 				<input id="iconUsername" type="text" value="Email" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
->>>>>>> 7852f87ae5e376ece92cb38a33b938c492de21ca
 				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
 				<input type="submit" value="Submit" name="btnLogin">
 			</form>
@@ -75,5 +65,3 @@
 	
 </body>
 <html>
-
-=
