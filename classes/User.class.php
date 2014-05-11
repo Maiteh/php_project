@@ -178,23 +178,12 @@
 				echo "tis gelukt";
 			}
 			else
-			{
-<<<<<<< HEAD
-				throw new Exception("Inlog gegevens zijn niet correct");
-			}	
-=======
+			{	
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
 		}		
 	}
 ?>
-
-
-
-
-
-
->>>>>>> 7852f87ae5e376ece92cb38a33b938c492de21ca
 
 		
 
