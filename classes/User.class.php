@@ -192,54 +192,7 @@
 			{	
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
-
-		public function EmailAvailable($db)
-		{
-			$sql = "select * from tblgebruiker 
-					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
-					";
-			$result = $db->conn->query($sql);
-			
-			if($result)
-			{
-				$rows = mysqli_num_rows($result);
-				if($rows === 0)
-				{
-					$available = true;
-				}
-				else
-				{
-					$available = false;	
-				}
-			return $available;
-			}
 		}
-
-		public function canLogin()
-		{
-			$db = new Db();
-			$sql = "select * from tblgebruiker 
-					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' and
-					password='".$db->conn->real_escape_string($this->m_sPassword)."';";
-			
-			echo $sql;
-
-			$result = $db->conn->query($sql);
-
-			if($result->num_rows == 1)
-			{
-				$db->conn->query($sql);
-				$_SESSION['loggedin'] = TRUE;
-				$_SESSION['email'] = $this->m_sEmail;
-				//header(""); -> redirecten naar 
-
-				echo "tis gelukt";
-			}
-			else
-			{	
-				throw new Exception("Sorry, your email or password is incorrect");
-			}
-		}		
 	}
 ?>
 
