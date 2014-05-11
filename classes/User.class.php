@@ -184,13 +184,23 @@
 				$db->conn->query($sql);
 				$_SESSION['loggedin'] = TRUE;
 				$_SESSION['email'] = $this->m_sEmail;
-				//header(""); -> redirecten naar 
-
-				echo "tis gelukt";
+				//echo "tis gelukt";
 			}
 			else
 			{	
 				throw new Exception("Sorry, your email or password is incorrect");
+			}
+		}
+
+		public function RedirectPage()
+		{
+			if (Admin == "yes") 
+			{
+				header("Location: backendRestaurant.php");
+			}
+			else
+			{
+				header("Location: test.php");
 			}
 		}
 	}
