@@ -1,5 +1,6 @@
 <?php
 	include_once("DB.class.php");
+	session_start();
 
 	class User
 	{ 
@@ -179,8 +180,11 @@
 			{	
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
-		}
 
-
+		}		
 	}
 ?>
+
+		
+
+
