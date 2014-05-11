@@ -112,7 +112,7 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-			$sql = "insert into tblklant(
+			$sql = "insert into tblgebruiker(
 						email, password, firstname, lastname, phone, admin) 
 					VALUES(
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
