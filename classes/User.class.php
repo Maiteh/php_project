@@ -155,26 +155,31 @@
 
 		public function canLogin()
 		{
-			$db = new DB();
-			$sql = "select * from tblklant
-					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
-					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "'
+			$db = new Db();
+			$salt = "IMVYJFDFGDprivate$574987sfdkl;jksldj!@#@&%&ˆ*SRT546564FYFGH";
+			$sql = "select * from tblgebruiker 
+					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+					and
+					password='".$db->conn->real_escape_string(md5($this->m_sPassword . $salt))."'
 					";
+			
+			// $sql;
 
 			$result = $db->conn->query($sql);
 
-			if ($result) {
-				if (mysqli_num_rows($result) === 0) 
-				{
-					$exists = true;
-				}
-				else
-				{
-					$exists = false;
-				}
-			}
-			return $exists;
+			if($result->num_rows == 1)
+			{
+				$db->conn->query($sql);
+				$_SESSION['loggedin'] = TRUE;
+				$_SESSION['email'] = $this->m_sEmail;
+				//header(""); -> redirecten naar 
 
+				echo "tis gelukt";
+			}
+			else
+			{	
+				throw new Exception("Sorry, your email or password is incorrect");
+			}
 		}
 
 
