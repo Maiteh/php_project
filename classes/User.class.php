@@ -134,7 +134,7 @@
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblklant 
+			$sql = "select * from tblgebruiker 
 					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
 					";
 			$result = $db->conn->query($sql);
@@ -156,7 +156,7 @@
 		public function canLogin()
 		{
 			$db = new DB();
-			$sql = "select * from tblklant
+			$sql = "select * from tblgebruiker
 					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
 					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "'
 					";
