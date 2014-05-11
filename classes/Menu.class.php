@@ -5,18 +5,17 @@
 	class Menu {
 
 		private $m_iType;
-		private $m_sNaam;
+		private $m_sName;
 		private $m_iPrijs;
 
 		public function __SET($p_sProperty, $p_vValue){
 			switch ($p_sProperty) {
 
 				case 'Type':
-					if ($p_vValue) {
-						$this->m_iType = $p_vValue;
-					} else {
-						
+					if ($p_vValue == "none") {
 						throw new Exception("Give a type");
+					} else {
+						$this->m_iType = $p_vValue;
 					}
 					break;
 				
@@ -24,7 +23,7 @@
 					if ($p_vValue == "") {
 						throw new Exception("Give a name");
 					} else {
-						$this->m_sNaam = $p_vValue;
+						$this->m_sName = $p_vValue;
 					}
 					break;
 
@@ -32,7 +31,7 @@
 					if ($p_vValue == "") {
 						throw new Exception("Give a price");
 					} else {
-						$this->m_iPrijs = $p_vValue;
+						$this->m_iPrice = $p_vValue;
 					}
 					break;
 
@@ -50,11 +49,11 @@
 					break;
 
 				case 'Name':
-					return $this->m_sNaam;
+					return $this->m_sName;
 					break;
 
 				case 'Price':
-					return $this->m_iPrijs;
+					return $this->m_iPrice;
 					break;
 				
 				default:
@@ -66,16 +65,17 @@
 
 		public function Save() {
             $db = new Db();
-            if ($db->conn->connect_errno()) {
+            if ($db->conn->connect_errno) {
             	echo "Where's yo database";
             } else {
-            	$sql = "insert into tblmenu (Menu_Gerecht, Menu_Beschrijving, Menu_Prijs) 
+            	$sql = "insert into tblmenu (fk_type_id, menu_name, menu_price) 
             		values (
-            				'" . $db->conn->real_escape_string($this->m_sType) ."', 
-            				'" . $db->conn->real_escape_string($this->m_sNaam) . "', 
-            				'" . $db->conn->real_escape_string($this->m_iPrijs) . "'
-            				);"; 
-            $db->conn->query($sql);
+            				'" . $db->conn->real_escape_string($this->m_iType) ."', 
+            				'" . $db->conn->real_escape_string($this->m_sName) . "', 
+            				'" . $db->conn->real_escape_string($this->m_iPrice) . "'
+            				);";
+
+            	$db->conn->query($sql);
             }
 		}
 

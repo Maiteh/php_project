@@ -10,7 +10,8 @@
 			$m->Type = $_POST['type'];
 			$m->Name = $_POST['name'];
 			$m->Price = $_POST['price'];
-		
+			$m->Save();
+			$feedback = "Your dish was saved!";
 
 		} catch (Exception $e) {
 			$error = $e->getMessage();
@@ -27,6 +28,7 @@
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+	<?php include_once('includes/include.nav.php'); ?>
 <div class="container">
 	<h1>Menu</h1>
 	<p>Select your restaurant</p>
@@ -34,21 +36,21 @@
 		
 	</select>
 	<h2>Add dish</h2>
-	<?php 
-	if(isset($error)){
-		echo "<div class='bg-danger'>$error</div>";
-	}
-	?>
+	<?php if(isset($error)): ?>
+		<p class='bg-danger'><?php echo $error; ?></p>
+	<?php elseif(isset($feedback)): ?>
+		<p class='bg-success'><?php echo $feedback; ?></p>
+	<?php endif; ?>
 	<form class="form-horizontal" role="form" method="post">
 
 		<div class="form-group">
 	  		<label for="type" class="col-sm-2 control-label">Type</label>
 	  		<div class="col-sm-8">
 			  	<select class="form-control" id="type" name="type">
-			  		<option value="" disabled selected>Choose type of dish</option>
+			  		<option value="none" selected>Choose type of dish</option>
 				  	<option value="0">Starter</option>
 				  	<option value="1">Main</option>
-				  	<option value="3">Desert</option>
+				  	<option value="2">Desert</option>
 				</select>
 			</div>
 	  	</div>
@@ -63,7 +65,7 @@
 	  	<div class="form-group">
 		   	<label for="price" class="col-sm-2 control-label">Price</label>
 		    <div class="col-sm-8">
-		      	<input type="text" class="form-control" id="price" name="price">
+		      	<input type="text" class="form-control" id="price" name="price" placeholder="3,50">
 		    </div>
 	  	</div>
 
