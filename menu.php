@@ -39,60 +39,77 @@
 	<select>
 		
 	</select>
-	<h2>Add Menu</h2>
-	<?php if(isset($error)): ?>
-		<div class='bg-danger'><?php echo $error; ?></div>
-	<?php elseif(isset($feedback)): ?>
-		<div class='bg-success'><?php echo $feedback; ?></div>
-	<?php endif; ?>
 
-	<form class="form-horizontal" role="form" method="post">
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+     			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<h4 class="modal-title" id="myModalLabel">Add a menu</h4>
+      			</div>
+      			<div class="modal-body">
+      				<?php if(isset($error)): ?>
+						<div class='bg-danger'><?php echo $error; ?></div>
+					<?php elseif(isset($feedback)): ?>
+						<div class='bg-success'><?php echo $feedback; ?></div>
+					<?php endif; ?>
 
-		<div class="form-group">
-	  		<label for="menu" class="col-sm-2 control-label">Menu name</label>
-	  		<div class="col-sm-8">
-				<input type="text" class="form-control" id="menu" name="menu">		 	
+					<form class="form-horizontal" role="form" method="post">
+
+						<div class="form-group">
+					  		<label for="menu" class="col-sm-2 control-label">Menu name</label>
+					  		<div class="col-sm-8">
+								<input type="text" class="form-control" id="menu" name="menu">		 	
+							</div>
+					  	</div>
+
+						<div class="form-group">
+					  		<label for="starter" class="col-sm-2 control-label">Starter</label>
+					  		<div class="col-sm-8">
+								<input type="text" class="form-control" id="starter" name="starter">		 	
+							</div>
+					  	</div>
+
+					  	<div class="form-group">
+						    <label for="main" class="col-sm-2 control-label">Main</label>
+						    <div class="col-sm-8">
+					      		<input type="text" class="form-control" id="main" name="main">
+					    	</div>
+					  	</div>
+
+					  	<div class="form-group">
+						    <label for="dessert" class="col-sm-2 control-label">Dessert</label>
+						    <div class="col-sm-8">
+					      		<input type="text" class="form-control" id="dessert" name="dessert">
+					    	</div>
+					  	</div>
+
+					  	<div class="form-group">
+						   	<label for="price" class="col-sm-2 control-label">Price</label>
+						    <div class="col-sm-8">
+						      	<input type="text" class="form-control" id="price" name="price" placeholder="3.50">
+						    </div>
+					  	</div>
+
+					  	<div class="form-group">
+					    	<div class="col-sm-offset-2 col-sm-8">
+					      	<input type="submit" name="submitDish" class="btn btn-default" value="Add dish" />
+					    	</div>
+					  	</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    	<button type="button" class="btn btn-primary">Add menu</button>
+		    	</div>
 			</div>
-	  	</div>
-
-		<div class="form-group">
-	  		<label for="starter" class="col-sm-2 control-label">Starter</label>
-	  		<div class="col-sm-8">
-				<input type="text" class="form-control" id="starter" name="starter">		 	
-			</div>
-	  	</div>
-
-	  	<div class="form-group">
-		    <label for="main" class="col-sm-2 control-label">Main</label>
-		    <div class="col-sm-8">
-	      		<input type="text" class="form-control" id="main" name="main">
-	    	</div>
-	  	</div>
-
-	  	<div class="form-group">
-		    <label for="dessert" class="col-sm-2 control-label">Dessert</label>
-		    <div class="col-sm-8">
-	      		<input type="text" class="form-control" id="dessert" name="dessert">
-	    	</div>
-	  	</div>
-
-	  	<div class="form-group">
-		   	<label for="price" class="col-sm-2 control-label">Price</label>
-		    <div class="col-sm-8">
-		      	<input type="text" class="form-control" id="price" name="price" placeholder="3.50">
-		    </div>
-	  	</div>
-
-	  	<div class="form-group">
-	    	<div class="col-sm-offset-2 col-sm-8">
-	      	<input type="submit" name="submitDish" class="btn btn-default" value="Add dish" />
-	    	</div>
-	  	</div>
-
-	</form>
-
-	<h2>Your menu's</h2>
-	<div>
+		</div>
+	</div>
+	<div class="row">
+		<h2 class="col-md-3">Your menu's</h2>
+		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
+	</div>
 		<table class="table table-striped">
 			<thead>
 				<th>Menu</th>
@@ -115,7 +132,7 @@
 						<td><?php echo $menu['menu_dessert']; ?></td>
 						<td><?php echo $menu['menu_price']; ?></td>
 						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+						<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
 					</tr>
 						
 		<?php
@@ -126,7 +143,6 @@
 		?>
 			</tbody>
 		</table>
-	</div>
 
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		<div class="modal-dialog">
@@ -136,7 +152,7 @@
         			<h4 class="modal-title" id="myModalLabel">Edit </h4>
       			</div>
       			<div class="modal-body">
-        			...
+        			
       			</div>
       			<div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
