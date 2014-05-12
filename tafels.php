@@ -1,14 +1,14 @@
 <?php
 	// code in dit document altijd beperkt houden door klasses
-
+	include_once("classes/Tafels.class.php");
+	$t = new Table();
+	$allTables = $t->AllTables();
 	if(!empty($_POST))
 	{
-
-			include_once("classes/Tafels.class.php");
-			$t = new Table();
 			$t->Number=$_POST['number'];
 			$t->Person=$_POST['person'];
 			$t->Occupation=$_POST['occupation'];
+			
 
 			if(isset($t->error) && !empty($t->error)){
 
@@ -32,15 +32,13 @@
 			{
 					$t->AddTable();	
 					//header("Location: index.php");
-			
-
 			}
 	}		
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Just in time | Register</title>
+	<title>Just in time | Tables</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	
@@ -69,17 +67,36 @@
 				<input type="submit" value="Submit">
 			</form>
 		</section>
-		<section>
 
-		<?php
-			while($b = $allBooking->fetch_assoc())
-			{
-				echo "<li>" . $b['booking_first_name'] . "</li>";
-			}
+		<section class="formRegister col-md-4 col-md-offset-4">
+		<table>
+			<thead>
+				<tr>
+					<th>Table number</th>
+					<th>Amount of persons</th>
+					<th>Occupation time for reservation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php  
 
-		?>
+                        if (isset($_POST)) 
+                        {
+                            $res = $t->AllTables();
+                            while($t = $res->fetch_assoc())
+                            {
+                            echo "<tr><td>" .$t['Tafel_Nummering'] . "</td>";
+                            echo "<td>" .$t['Tafel_AantalPersonen'] . " Persons </td>";
+                            echo "<td>" .$t['Tafel_BezetTijd'] . " </td></tr>";
+                            }
+                          }
+                          ?> 
+             </tbody>
+         </table>
+
+		
 	</section>
-	
+
 		<?php include("includes/include.footer.php"); ?>
 		
 	</div>

@@ -97,7 +97,16 @@ input{
 	margin-top: 11px;
 	margin-right: 15px;
 }
-
+li{
+	list-style: none;
+}
+.opsomming{
+	float: left;
+}
+table{
+	margin-left: 5%;
+	margin-right: 5%;
+}
 /******Media quries*********/
 
 	/*everything smaller then an ipad*/

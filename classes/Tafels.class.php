@@ -82,5 +82,12 @@
 			echo $sql;
 		}
 
+		public function AllTables(){
+			$db = new DB();
+			$sql = "select * from tbltafel";
+			$res= $db->conn->query($sql);
+			return($res);
+		}
+
 	}
 ?>
