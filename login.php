@@ -1,8 +1,5 @@
 <?php
 
-	session_start();
-	$_SESSION['loggedin'] = FALSE;	
-
 	if (!empty($_POST['btnLogin'])) 
 	{
 		try
@@ -15,8 +12,12 @@
 			//var_dump($user);
 
 			$u->canLogin();
-
-			header("Location: index.php");
+			if ($u->canLogin()){
+				session_start();
+				$_SESSION['email'] = $u->CheckEmail;
+				$_SESSION['loggedin'] = true;
+		
+				header("Location: index.php");
 
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 

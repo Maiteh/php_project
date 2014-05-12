@@ -1,5 +1,6 @@
 <?php
-	include_once("Db.class.php");
+	include_once("DB.class.php");
+	session_start();
 
 	class User
 	{ 
@@ -37,6 +38,7 @@
 		 				$this->m_sPassword = md5($p_vValue.$salt);
 		 				break;
 		 			}
+
 		 		case 'Firstname':
 					if(!empty($p_vValue)){
 						$this->m_sFirstname = $p_vValue;
@@ -44,6 +46,16 @@
 					else
 					{
 						$this->error["errorFirstname"] = "Fill in your firstname";
+					}
+					break;
+
+				case 'Lastname':
+					if(!empty($p_vValue)){
+					$this->m_sLastname = $p_vValue;
+					}
+					else
+					{
+						$this->error["errorLastname"] = "Fill in your lastname";
 					}
 					break;
 
@@ -112,7 +124,7 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-			$sql = "insert into tblklant(
+			$sql = "insert into tblgebruiker(
 						email, password, firstname, lastname, phone, admin) 
 					VALUES(
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
@@ -124,17 +136,18 @@
 						)
 					";
 			$db->conn->query($sql);
-			echo $sql;
-		}
-		else
-		{
-			$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
-		}
+			//echo $sql;
+			}
+			else
+			{
+				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
+			}
+
 		}
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblklant 
+			$sql = "select * from tblgebruiker 
 					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
 					";
 			$result = $db->conn->query($sql);
@@ -155,28 +168,28 @@
 
 		public function canLogin()
 		{
-			$db = new DB();
-			$sql = "select * from tblklant
-					where email = '" . $db->conn->real_escape_string($this->m_sEmail) . "',
-					and password = '" . $db->conn->real_escape_string($this->m_sPassword) . "'
+			$db = new Db();
+			$sql = "select * from tblgebruiker 
+					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+					and
+					password='".$db->conn->real_escape_string($this->m_sPassword)."'
 					";
+			
+			// $sql;
 
 			$result = $db->conn->query($sql);
 
-			if ($result) {
-				if (mysqli_num_rows($result) === 0) 
-				{
-					$exists = true;
-				}
-				else
-				{
-					$exists = false;
-				}
+			if($result->num_rows == 1) {
+				return true;
+
+			} else {
+				throw new Exception("Sorry, your email or password is incorrect");
+				
 			}
-			return $exists;
-
 		}
-
-
 	}
 ?>
+
+		
+
+
