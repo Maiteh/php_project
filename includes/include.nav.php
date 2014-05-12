@@ -14,7 +14,7 @@
 	      	<ul class="nav navbar-nav">
 	      		<li <?php if($page == "mijnrestaurant.php"){echo 'class="active"';}?>><a href="mijnrestaurant.php">Restaurant</a></li>
 	        	<li <?php if($page == "menu.php"){echo 'class="active"';}?>><a href="menu.php">Menu</a></li>
-	        	<li <?php if($page == "#"){echo 'class="active"';}?>><a href="#">Table</a></li>
+	        	<li <?php if($page == "tafel.php"){echo 'class="active"';}?>><a href="#">Table</a></li>
 	        </ul>
 
 		    <ul class="nav navbar-nav navbar-right">

@@ -132,8 +132,7 @@
             {
 	        $sql = "insert into tblrestaurant
 	            (
-		            Restaurant_Naam, 
-		            Restaurant_Voornaam, 
+		            Restaurant_Naam,  
 		            Restaurant_Adres,
 		            Restaurant_Postcode,
 					Restaurant_Gemeente,
@@ -144,8 +143,7 @@
 					fk_gebruiker_id
 				)
 
-	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."', 
-	            		'" . $db->conn->real_escape_string($this->m_sVoorNaam) . "', 
+	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."',  
 	            		'" . $db->conn->real_escape_string($this->m_sAdres) . "',
 	            		'" . $db->conn->real_escape_string($this->m_sPostcode) . "',
 	            		'" . $db->conn->real_escape_string($this->m_sGemeente) . "',

@@ -36,7 +36,7 @@
 			<th>Voornaam</th>
 			<th>Adres</th>
 			<th>Gemeente</th>
-			<th>Price</th>
+			<th>Phone</th>
 		</thead>
 	<tbody>
 

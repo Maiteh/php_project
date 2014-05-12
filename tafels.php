@@ -79,18 +79,14 @@
 			</thead>
 			<tbody>
 				<?php  
-
-                        if (isset($_POST)) 
-                        {
-                            $res = $t->AllTables();
-                            while($t = $res->fetch_assoc())
-                            {
-                            echo "<tr><td>" .$t['Tafel_Nummering'] . "</td>";
-                            echo "<td>" .$t['Tafel_AantalPersonen'] . " Persons </td>";
-                            echo "<td>" .$t['Tafel_BezetTijd'] . " </td></tr>";
-                            }
-                          }
-                          ?> 
+                    $res = $t->AllTables();
+                    while($t = $res->fetch_assoc())
+                    {
+                    	echo "<tr><td>" .$t['Tafel_Nummering'] . "</td>";
+                    	echo "<td>" .$t['Tafel_AantalPersonen'] . " Persons </td>";
+                    	echo "<td>" .$t['Tafel_BezetTijd'] . " </td></tr>";
+                    }
+                ?> 
              </tbody>
          </table>
 
