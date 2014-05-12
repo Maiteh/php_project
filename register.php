@@ -61,7 +61,6 @@
 						$er_available = $u->error['errorAvailable'];
 					} else {
 					session_start();
-<<<<<<< HEAD
 
 					$row = $u->getId();
 					$id = $row['Klant_ID'];
@@ -71,11 +70,6 @@
 					$_SESSION['loggedin'] = true;
 					$_SESSION['id'] = $id;
 					
-=======
-					$_SESSION['email']=$u->Email;
-					$_SESSION['admin']=$u->Admin;
-					$_SESSION['loggedin'] = true;
->>>>>>> master
 					header("Location: menu.php");
 					}
 				}
