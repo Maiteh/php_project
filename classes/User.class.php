@@ -12,7 +12,7 @@
 		private $m_bAdmin;
 		public $error = array();
 
-		public function __set($p_sProperty, $p_vValue)
+		public function __SET($p_sProperty, $p_vValue)
 		{
 			switch ($p_sProperty) 
 			{
@@ -91,7 +91,7 @@
 			}
 		}
 
-		public function __get($p_sProperty)
+		public function __GET($p_sProperty)
 		{
 
 			switch ($p_sProperty) 
@@ -172,24 +172,27 @@
 			$sql = "select * from tblgebruiker 
 					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
 					and
-					password='".$db->conn->real_escape_string($this->m_sPassword)."'
-					";
-			
-			// $sql;
+					password='".$db->conn->real_escape_string($this->m_sPassword)."'";
+
+			$sqlAdmin = "select * from tblgebruiker 
+						where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+						and
+						admin ='yes'";
+
+			$checkAdmin = $db->conn->query($sqlAdmin);
 
 			$result = $db->conn->query($sql);
 
-			if($result->num_rows == 1)
-			{
-				$db->conn->query($sql);
-				$_SESSION['loggedin'] = TRUE;
-				$_SESSION['email'] = $this->m_sEmail;
-				//header(""); -> redirecten naar 
+			if($result->num_rows == 1) {
+				if ($checkAdmin->num_rows == 1) {
+					$admin = "yes";
+					return $admin;
+				} else {
+					$admin = "no";
+					return $admin;
+				}
 
-				echo "tis gelukt";
-			}
-			else
-			{	
+			} else {
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
 		}

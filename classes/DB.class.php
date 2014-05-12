@@ -4,7 +4,7 @@
 		private $m_sHost = "localhost";
 		private $m_sUser = "root";
 		private $m_sPassword = "";
-		private $m_sDatabase = "Justintime";
+		private $m_sDatabase = "justintime";
 		public $conn;
 
 
