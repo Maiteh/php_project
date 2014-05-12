@@ -1,6 +1,12 @@
 <?php
 
-	include_once("classes/Restaurant.class.php");
+	session_start();
+
+	if ($_SESSION['admin'] == "yes" && $_SESSION['loggedin'] == true) {
+		include_once("classes/Restaurant.class.php");
+	} else {
+		header('Location: index.php');
+	}
 	
 ?><!DOCTYPE html>
 <html lang="en">
@@ -13,6 +19,8 @@
 	
 </head>
 <body >
+
+	<?php include_once('includes/include.nav.php'); ?>
 
 	<div class="container">
 		<h2>Mijn Restaurants</h2>
@@ -35,7 +43,7 @@
 	<?php
 
 		$restaurant = new Restaurant();
-		$all = $restaurant->getAll();
+		$all = $restaurant->getAll($_SESSION['id']);
 
 		while ($r = $all->fetch_assoc()) 
 		{

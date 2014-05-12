@@ -3,17 +3,17 @@
 	include_once("DB.class.php");
 
 	class Restaurant 
-	//extends Restaurant
 	{
-		private  $m_sNaam;
-		private  $m_sVoorNaam;
-		private  $m_sAdres;
-		private  $m_sPostcode;
-		private  $m_sGemeente;
-		private  $m_sWebsite;
-		private  $m_sEmail;
-		private  $m_sTelNummer;
-		private  $m_sGsmNummer;
+		private $m_sNaam;
+		private $m_sVoorNaam;
+		private $m_sAdres;
+		private $m_sPostcode;
+		private $m_sGemeente;
+		private $m_sWebsite;
+		private $m_sEmail;
+		private $m_sTelNummer;
+		private $m_sGsmNummer;
+		private $m_iGebruikerId;
 
 		public function __SET($p_sProperty, $p_vValue)
 		{
@@ -64,6 +64,10 @@
 					$this->m_sGsmNummer = $p_vValue;
 					break;
 
+				case 'GebruikerId':
+					$this->m_iGebruikerId = $p_vValue;
+					break;
+
 				default:
 					break;
 			}
@@ -108,6 +112,10 @@
 				case 'GsmNummer':
 					return $this->m_sGsmNummer;
 					break;
+
+				case 'GebruikerId':
+					return $this->m_iGebruikerId;
+					break;
 				
 				default:
 					
@@ -132,7 +140,8 @@
 					Restaurant_Website,
 					Restaurant_Email,
 					Restaurant_Telefoonnr,
-					Restaurant_GSM
+					Restaurant_GSM,
+					fk_gebruiker_id
 				)
 
 	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."', 
@@ -143,9 +152,9 @@
 	           			'" . $db->conn->real_escape_string($this->m_sWebsite) . "',
 	         			'" . $db->conn->real_escape_string($this->m_sEmail) . "',
 	            		'" . $db->conn->real_escape_string($this->m_sTelNummer) . "',
-	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "'
-	            				);
-						";
+	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "',
+	           			'" . $db->conn->real_escape_string($this->m_iGebruikerId) . "'
+	            		);";
 	            $db->conn->query($sql);
             }
             else
@@ -155,11 +164,15 @@
            
 		}
 
-		public function getAll()
+		public function getAll($id)
 		{
 		    $db = new DB();
-        	$sql = "select * from tblrestaurant";
+        	$sql = "SELECT * 
+					FROM tblrestaurant
+					WHERE fk_gebruiker_id = $id";
+			
         	$result = $db->conn->query($sql);
+        	
         	return $result;
 		}
 

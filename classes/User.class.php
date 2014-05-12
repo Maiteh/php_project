@@ -1,6 +1,5 @@
 <?php
 	include_once("DB.class.php");
-	session_start();
 
 	class User
 	{ 
@@ -195,6 +194,17 @@
 			} else {
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
+		}
+
+		public function getID() {
+			$db = new Db();
+			$sql = "SELECT Klant_ID FROM tblgebruiker
+					WHERE email = '$this->m_sEmail'";
+			
+			$result = $db->conn->query($sql);
+			$id = mysqli_fetch_assoc($result);
+
+			return $id;
 		}
 	}
 ?>

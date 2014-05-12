@@ -12,11 +12,16 @@
 			if ($u->canLogin() == "yes") {
 				// admin gebruiker
 				session_start();
+
+				$row = $u->getId();
+				$id = $row['Klant_ID'];
+
 				$_SESSION['email'] = $u->Email;
 				$_SESSION['admin'] = "yes";
 				$_SESSION['loggedin'] = true;
+				$_SESSION['id'] = $id;
 		
-				header("Location: menu.php");
+				header("Location: mijnrestaurant.php");
 
 			} elseif ($u->canLogin() == "no") {
 				// geen admin (klant)
@@ -25,7 +30,7 @@
 				$_SESSION['admin'] = "no";
 				$_SESSION['loggedin'] = true;
 
-				header("Location: index.php");
+				header("Location: mijnrestaurant.php");
 			}
 
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
