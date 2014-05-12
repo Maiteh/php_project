@@ -104,9 +104,11 @@ li{
 .opsomming{
 	float: left;
 }
-table{
-	margin-left: 5%;
-	margin-right: 5%;
+.tafel{
+	width: 100% !important;
+}
+section{
+	margin-left: 25% !important;
 }
 /******Media quries*********/
 

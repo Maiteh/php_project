@@ -4,68 +4,51 @@
 
 	class Restaurant 
 	{
-		private $m_sNaam;
-		private $m_sVoorNaam;
-		private $m_sAdres;
-		private $m_sPostcode;
-		private $m_sGemeente;
-		private $m_sWebsite;
+		private $m_sName;
+		private $m_sAddress;
+		private $m_sZip;
+		private $m_sCity;
 		private $m_sEmail;
-		private $m_sTelNummer;
-		private $m_sGsmNummer;
-		private $m_iGebruikerId;
+		private $m_sPhone;
+		private $m_iUserId;
 
 		public function __SET($p_sProperty, $p_vValue)
 		{
 			switch ($p_sProperty) 
 			{
-				case 'Naam':
+				case 'Name':
 
-					if ($p_vValue == "") 
-					{
-						throw new Exception("Gelieve een naam in te vullen.");
+					if ($p_vValue == "") {
+						throw new Exception("Fill in a name");
 					}
-					else
-					{
-						$this->m_sNaam = $p_vValue;
+					else {
+						$this->m_sName = $p_vValue;
 					}
 					break;
 					
 
-				case 'VoorNaam':
-					$this->m_sVoorNaam = $p_vValue;
+				case 'Address':
+					$this->m_sAddress = $p_vValue;
 					break;
 
-				case 'Adres':
-					$this->m_sAdres = $p_vValue;
+				case 'Zip':
+					$this->m_sZip = $p_vValue;
 					break;
 
-				case 'Postcode':
-					$this->m_sPostcode = $p_vValue;
+				case 'City':
+					$this->m_sCity = $p_vValue;
 					break;
 
-				case 'Gemeente':
-					$this->m_sGemeente = $p_vValue;
-					break;
-
-				case 'Website':
-					$this->m_sWebsite = $p_vValue;
-					break;
-				
 				case 'Email':
 					$this->m_sEmail = $p_vValue;
 					break;
 
-				case 'TelNummer':
-					$this->m_sTelNummer = $p_vValue;
+				case 'Phone':
+					$this->m_sPhone = $p_vValue;
 					break;
-
-				case 'GsmNummer':
-					$this->m_sGsmNummer = $p_vValue;
-					break;
-
-				case 'GebruikerId':
-					$this->m_iGebruikerId = $p_vValue;
+				
+				case 'UserId':
+					$this->m_iUserId = $p_vValue;
 					break;
 
 				default:
@@ -77,44 +60,32 @@
 		{
 			switch ($p_sProperty) 
 			{				
-				case 'Naam':
-					return $this->m_sNaam;
+				case 'Name':
+					return $this->m_sName;
 					break;
 
-				case 'VoorNaam':
-					return $this->m_sVoorNaam;
+				case 'Address':
+					return $this->m_sAddress;
 					break;
 
-				case 'Adres':
-					return $this->m_sAdres;
+				case 'Zip':
+					return $this->m_sZip;
 					break;
 
-				case 'Postcode':
-					return $this->m_sPostcode;
-					break;
-
-				case 'Gemeente':
-					return $this->m_sGemeente;
-					break;
-
-				case 'Website':
-					return $this->m_sWebsite;
+				case 'City':
+					return $this->m_sCity;
 					break;
 
 				case 'Email':
 					return $this->m_sEmail;
 					break;
 
-				case 'TelNummer':
-					return $this->m_sTelNummer;
+				case 'Phone':
+					return $this->m_sPhone;
 					break;
 
-				case 'GsmNummer':
-					return $this->m_sGsmNummer;
-					break;
-
-				case 'GebruikerId':
-					return $this->m_iGebruikerId;
+				case 'UserId':
+					return $this->m_iUserId;
 					break;
 				
 				default:
@@ -132,8 +103,7 @@
             {
 	        $sql = "insert into tblrestaurant
 	            (
-		            Restaurant_Naam, 
-		            Restaurant_Voornaam, 
+		            Restaurant_Naam,  
 		            Restaurant_Adres,
 		            Restaurant_Postcode,
 					Restaurant_Gemeente,
@@ -144,8 +114,7 @@
 					fk_gebruiker_id
 				)
 
-	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."', 
-	            		'" . $db->conn->real_escape_string($this->m_sVoorNaam) . "', 
+	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."',  
 	            		'" . $db->conn->real_escape_string($this->m_sAdres) . "',
 	            		'" . $db->conn->real_escape_string($this->m_sPostcode) . "',
 	            		'" . $db->conn->real_escape_string($this->m_sGemeente) . "',
@@ -155,7 +124,6 @@
 	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "',
 	           			'" . $db->conn->real_escape_string($this->m_iGebruikerId) . "'
 	            		);";
-				echo $sql;
 	            $db->conn->query($sql);
             }
             else
@@ -170,7 +138,7 @@
 		    $db = new DB();
         	$sql = "SELECT * 
 					FROM tblrestaurant
-					WHERE fk_gebruiker_id = $id";
+					WHERE fk_user_id = $id";
 			
         	$result = $db->conn->query($sql);
         	

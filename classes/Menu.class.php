@@ -15,7 +15,7 @@
 			switch ($p_sProperty) {
 
 				case 'Menu':
-					if ($p_vValue == "") {
+					if (empty($p_vValue)) {
 						throw new Exception("Give a menu name");
 					} else {
 						$this->m_sMenu = $p_vValue;
@@ -23,7 +23,7 @@
 					break;
 				
 				case 'Starter':
-					if ($p_vValue == "") {
+					if (empty($p_vValue)) {
 						throw new Exception("Give a starter dish");
 					} else {
 						$this->m_sStarter = $p_vValue;
@@ -31,7 +31,7 @@
 					break;
 
 				case 'Main':
-					if ($p_vValue == "") {
+					if (empty($p_vValue)) {
 						throw new Exception("Give a main dish");
 					} else {
 						$this->m_sMain = $p_vValue;
@@ -39,7 +39,7 @@
 					break;
 
 				case 'Dessert':
-					if ($p_vValue == "") {
+					if (empty($p_vValue)) {
 						throw new Exception("Give a dessert");
 					} else {
 						$this->m_sDessert = $p_vValue;
@@ -47,7 +47,7 @@
 					break;
 
 				case 'Price':
-					if ($p_vValue == "") {
+					if (empty($p_vValue)) {
 						throw new Exception("Give a price");
 					} else {
 						$this->m_iPrice = $p_vValue;
@@ -55,7 +55,11 @@
 					break;
 
 				case 'RestaurantId':
-					$this->m_iRestaurantId = $p_vValue;
+					if (empty($p_vValue)) {
+							throw new Exception("Give a price");
+					} else {
+						$this->m_iRestaurantId = $p_vValue;
+					}
 					break;
 
 				default:
@@ -111,7 +115,7 @@
             				'" . $db->conn->real_escape_string($this->m_iPrice) . "',  
             				'" . $db->conn->real_escape_string($this->m_iRestaurantId) . "'
             				);";
-				//echo $sql;
+				
             	$db->conn->query($sql);
             }
 		}
@@ -120,7 +124,9 @@
 		    $db = new Db();
 
 			if (!$db->conn->connect_errno) {
-				$sql = "SELECT * FROM tblmenu";
+				$sql = "SELECT * FROM tblmenu
+						WHERE fk_restaurant_id = $this->m_iRestaurantId";
+
 				$allMenus = $db->conn->query($sql);
 
 				return $allMenus;
@@ -128,10 +134,31 @@
 		}
 
 		public function updateMenu() {
-
+			$db = new Db();
+            if ($db->conn->connect_errno) {
+            	echo "Where's yo database";
+            } else {
+            	$sql = "UPDATE tblmenu SET 	menu_name = 		'" . $db->conn->real_escape_string($this->m_sMenu) ."', 
+            								menu_starter =		'" . $db->conn->real_escape_string($this->m_sStarter) . "', 
+            								menu_main = 		'" . $db->conn->real_escape_string($this->m_sMain) . "',
+            								menu_dessert =		'" . $db->conn->real_escape_string($this->m_sDessert) . "', 
+            								menu_price = 		'" . $db->conn->real_escape_string($this->m_iPrice) . "' , 
+            								fk_restaurant_id = 	'" . $db->conn->real_escape_string($this->m_iRestaurantId) . "';";
+				
+            	$db->conn->query($sql);
+            }
 		}
 
 		public function deleteMenu() {
+			$db = new Db();
+            if ($db->conn->connect_errno) {
+            	echo "Where's yo database";
+            } else {
+            	$sql = "DELETE FROM tblmenu
+            			WHERE fk_restaurant_id = $this->m_iRestaurantId";
+				
+            	$result = $db->conn->query($sql);
+            }
 		}
 
 	}

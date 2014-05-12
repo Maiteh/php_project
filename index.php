@@ -18,7 +18,6 @@
 		<section class="btn">
 			<a href="register.php"><img class="img-responsive col-xs-6" src="images/btnImageR.png" alt="register"></a>
 			<a href="login.php"><img class="img-responsive col-xs-6" src="images/btnImageL.png" alt="login"></a>
-			<a href="mijnrestaurant.php">restaurant</a>
 		</section>
 
 		<?php include("includes/include.footer.php"); ?>
@@ -27,6 +26,5 @@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
-	
 </body>
 <html>

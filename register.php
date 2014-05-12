@@ -61,10 +61,18 @@
 						$er_available = $u->error['errorAvailable'];
 					} else {
 					session_start();
+
+					$row = $u->getId();
+					$id = $row['Klant_ID'];
+
 					$_SESSION['email']=$u->Email;
 					$_SESSION['admin']=$u->Admin;
 					$_SESSION['loggedin'] = true;
-					header("Location: menu.php");
+
+					$_SESSION['id'] = $id;
+					
+
+					header("Location: mijnrestaurant.php");
 					}
 				}
 				else
