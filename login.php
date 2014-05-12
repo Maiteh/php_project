@@ -27,8 +27,8 @@
 				// geen admin (klant)
 				session_start();
 				$_SESSION['email'] = $u->Email;
-				$_SESSION['admin'] = "no";
-				$_SESSION['loggedin'] = true;
+				//$_SESSION['admin'] = "no";
+				//$_SESSION['loggedin'] = true;
 
 				header("Location: mijnrestaurant.php");
 			}
