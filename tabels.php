@@ -53,13 +53,14 @@
 		
 	<form class="form-horizontal" action="" method="post">
 		<h3 id="titleRegister">Register</h3>
-		<div class="form-group"></div>
-		<p class="error"><?php if (isset($er_number)) { echo $er_number; echo "hallo test122";}?></p>
-		<input id="iconUsername" type="text" name="number" placeholder="number"  value="<?php if(isset($_POST['number'])){ echo $_POST['number'];} ?>">
-		<div class="form-group"></div>
-
-		<p class="error"><?php if (isset($er_person)) { echo $er_person;} ?></p>
-		<input id="iconUsername" type="text" name="person"  placeholder="How many persons fit this table ?"  value="<?php if(isset($_POST['person'])){ echo $_POST['person']; } ?>">
+		<div class="form-group">
+			<p class="error"><?php if (isset($er_number)) { echo $er_number; echo "hallo test122";}?></p>
+			<input id="iconUsername" type="text" name="number" placeholder="number">
+		</div>
+		<div class="form-group">
+			<p class="error"><?php if (isset($er_person)) { echo $er_person;} ?></p>
+			<input id="iconUsername" type="text" name="person"  placeholder="How many persons fit this table ?"  value="<?php if(isset($_POST['person'])){ echo $_POST['person']; } ?>">
+		</div>
 		<div class="form-group">
 			<p class="error"><?php if (isset($er_occupation)) { echo $er_occupation;} ?></p>
 			<input id="iconUsername" type="text" name="occupation" placeholder="How long should this table be occupied ? in minutes !" >

@@ -115,7 +115,7 @@
             				'" . $db->conn->real_escape_string($this->m_iPrice) . "',  
             				'" . $db->conn->real_escape_string($this->m_iRestaurantId) . "'
             				);";
-				//echo $sql;
+				
             	$db->conn->query($sql);
             }
 		}
@@ -125,7 +125,8 @@
 
 			if (!$db->conn->connect_errno) {
 				$sql = "SELECT * FROM tblmenu
-						WHERE fk_restaurant_id = ";
+						WHERE fk_restaurant_id = $this->m_iRestaurantId";
+
 				$allMenus = $db->conn->query($sql);
 
 				return $allMenus;

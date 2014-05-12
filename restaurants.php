@@ -69,8 +69,8 @@
 					<td><?php echo $r['restaurant_city']; ?></td>
 					<td><?php echo $r['restaurant_email']; ?></td>
 					<td><?php echo $r['restaurant_phone']; ?></td>
-					<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-					<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					<td><a href="menu.php?resto_id=<?php echo $r['restaurant_id']; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Menu</a></td>
+					<td><a href="tables.php?resto_id=<?php echo $r['restaurant_id']; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Tables</a></td>
 				</tr>
 		<?php } ?>
 

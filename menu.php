@@ -7,6 +7,11 @@
 		include_once('classes/Menu.class.php');
 		$m = new Menu();
 
+		if (!empty($_GET['resto_id'])) {
+			$restoId = $_GET['resto_id'];
+			$m->RestaurantId = $restoId;
+		}
+
 		if (!empty($_POST['submitDish'])) {
 			try {
 				// Save menu
@@ -15,22 +20,15 @@
 				$m->Main = $_POST['main'];
 				$m->Dessert = $_POST['dessert'];
 				$m->Price = floatval($_POST['price']);
-				$m->RestaurantId = 1;
+				$m->RestaurantId = $_GET['resto_id'];;
 				$m->Save();
 				$feedback = "Your menu was saved!";
-
-				// Edit menu
-				
 
 			} catch (Exception $e) {
 				$error = $e->getMessage();
 			}
 		}
 
-		if (!empty($_POST['btn-select'])) {
-			
-		}
-		
 	} else {
 		header('Location: index.php');
 	}
@@ -48,26 +46,50 @@
 <body>
 	<?php include_once('includes/include.nav.php'); ?>
 <div class="container">
-	<h2>Menu</h2>
-	<p>Select your restaurant</p>
-	<form class="form-inline" role="form" method="post">
-		<div class="form-group">
-			<select class="form-control">
-				<option disabled>Select a restaurant</option>
-				<?php 
-					$allR = $r->getAll($_SESSION['id']);
-					if(mysqli_num_rows($allR) > 0) {
-						while ($resto = $allR->fetch_assoc()){ ?>
-							<option value="<?php echo $resto['restaurant_id']; ?>"><?php echo $resto['restaurant_name'] ?></option>
-				<?php 	}
-					} else {
-						
-					} ?>
-			</select>
-		   	
-		   	<input type="submit" class="form-control" id="btn-select" name="btn-select" value="Select">
-		</div>
-	</form>
+
+	<div class="row">
+		<h2 class="col-md-3">Your menu's</h2>
+		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addMenu"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
+	</div>
+
+	<?php if(isset($error)): ?>
+		<div class='bg-danger'><?php echo $error; ?></div>
+	<?php elseif(isset($feedback)): ?>
+		<div class='bg-success'><?php echo $feedback; ?></div>
+	<?php endif; ?>
+
+	<?php 
+		$allMenus = $m->getMenus();
+		
+		if(mysqli_num_rows($allMenus) > 0) { ?>
+	<table class="table table-striped">
+		<thead>
+			<th>Menu</th>
+			<th>Starter</th>
+			<th>Main</th>
+			<th>Dessert</th>
+			<th>Price</th>
+		</thead>
+		<tbody>
+	<?php	while($menu = $allMenus->fetch_assoc()) { ?>
+				<tr>
+					<td><?php echo $menu['menu_name']; ?></td>
+					<td><?php echo $menu['menu_starter']; ?></td>
+					<td><?php echo $menu['menu_main']; ?></td>
+					<td><?php echo $menu['menu_dessert']; ?></td>
+					<td>&euro;<?php echo $menu['menu_price']; ?></td>
+					<td><a href="menu.php"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
+					<td><a href="tables.php"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+				</tr>
+					
+	<?php 	} ?>
+		</tbody>
+	</table>
+	<?php	} else {
+			echo "<p>No menu's saved</p>";	
+		}
+	?>
+	
 
 	<div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		<div class="modal-dialog">
@@ -125,51 +147,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<h2 class="col-md-3">Your menu's</h2>
-		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addMenu"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
-	</div>
-
-	<?php if(isset($error)): ?>
-		<div class='bg-danger'><?php echo $error; ?></div>
-	<?php elseif(isset($feedback)): ?>
-		<div class='bg-success'><?php echo $feedback; ?></div>
-	<?php endif; ?>
-
-	<table class="table table-striped">
-		<thead>
-			<th>Menu</th>
-			<th>Starter</th>
-			<th>Main</th>
-			<th>Dessert</th>
-			<th>Price</th>
-		</thead>
-		<tbody>
-	<?php 
-		$allMenus = $m->getMenus();
-		
-		if(mysqli_num_rows($allMenus) > 0) {	
-
-			while($menu = $allMenus->fetch_assoc()) { ?>
-				<tr>
-					<td><?php echo $menu['menu_name']; ?></td>
-					<td><?php echo $menu['menu_starter']; ?></td>
-					<td><?php echo $menu['menu_main']; ?></td>
-					<td><?php echo $menu['menu_dessert']; ?></td>
-					<td>&euro;<?php echo $menu['menu_price']; ?></td>
-					<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-					<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
-				</tr>
-					
-	<?php
-			}
-		} else {
-			echo "<p>No menu's saved</p>";	
-		}
-	?>
-		</tbody>
-	</table>
-
 </div>
 </body>
 </html>
