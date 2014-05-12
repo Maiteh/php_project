@@ -151,7 +151,7 @@
             }
             else
             {
-            	echo "db ni inorde";
+            	echo "DB link failed";
             }
            
 		}

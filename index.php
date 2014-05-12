@@ -18,7 +18,7 @@
 		<section class="btn">
 			<a href="register.php"><img class="img-responsive col-xs-6" src="images/btnImageR.png" alt="register"></a>
 			<a href="login.php"><img class="img-responsive col-xs-6" src="images/btnImageL.png" alt="login"></a>
-			<a href="restaurant.php">restaurant</a>
+			<a href="mijnrestaurant.php">restaurant</a>
 		</section>
 
 		<?php include("includes/include.footer.php"); ?>

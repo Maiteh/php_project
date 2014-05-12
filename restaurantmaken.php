@@ -39,10 +39,11 @@ if (!empty($_POST))
 	
 </head>
 <body >
-<a href="mijnrestaurant.php">Mijn restaurant</a>
-<div class="container">
+<div class="container modal-header">
 	<h2>Restaurant toevoegen</h2>
+	<a href="mijnrestaurant.php">Mijn restaurants</a>
 </div>
+<div class="invisible">...</div>
 
 <div class="col-md-8">
 
