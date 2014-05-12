@@ -38,7 +38,7 @@
 		{
             $db = new Db();
 
-            $sql = "insert into tblfeedback (fdb_Comment)
+            $sql = "insert into tblfeedback (Feedback_Feedback)
             		values 
             		('" . $db->conn->real_escape_string($this->m_sComment) . "');
 			"; 

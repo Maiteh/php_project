@@ -32,7 +32,6 @@ if (!empty($_POST))
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
   <script>
@@ -137,7 +136,7 @@ if (!empty($_POST))
 			<div class="form-group">
 				<label class="col-sm-2 control-label"  for="datum"></label>
 				<div class="col-sm-4">
-					<button type="button" class="btn btn-primary" onclick="datum()">Plaats Reservatie</button>
+					<button type="button" class="btn btn-primary">Plaats Reservatie</button>
 				</div>
 			</div>
 

@@ -76,7 +76,6 @@
 						<td><?php echo $r['Restaurant_Telefoonnr']; ?></td>
 						<td><a href="" data-toggle="modal" data-target="#editModal">&nbsp;Menu</a></td>
 						<td><a href="" data-toggle="modal" data-target="#deleteModal">&nbsp;Tafels</a></td>
-						<td><a href="mijnreservaties.php" data-toggle="modal" data-target="#deleteModal">&nbsp;Reservaties</a></td>
 						<td><a href="" data-toggle="modal" data-target="#feedbackmaken">&nbsp;Feedback</a></td>
 					</tr>
 				<?php

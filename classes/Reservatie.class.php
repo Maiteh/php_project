@@ -100,6 +100,7 @@
             		'" . $db->conn->real_escape_string($this->m_iTelnr) . "', 
             		'" . $db->conn->real_escape_string($this->m_sEmail) . "');
 			"; 
+			echo $sql;
             $db->conn->query($sql);
 		}
 

@@ -14,8 +14,8 @@
 	
 <script type="text/javascript">
 	
-	function delete()
-	{ <?php $reservaties->delete(); ?> }
+	//function delete()
+	//{ <?php $reservaties->delete(); ?> }
 
 </script>
 
@@ -55,7 +55,6 @@
 					<td><?php echo $r['Reservatie_Naam']; ?></td>
 					<td><?php echo $r['Reservatie_Telnr']; ?></td>
 					<td><?php echo $r['Reservatie_Email']; ?></td>
-					<td><a href="" data-toggle="modal" data-target="#deleteModal" onClick="delete()" ><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a></td>
 				</tr>
 			<?php
 		}
