@@ -1,9 +1,9 @@
 <?php
 	// code in dit document altijd beperkt houden door klasses
-	
+
 	if(!empty($_POST))
 	{
-	
+
 			include_once("classes/User.class.php");
 			$u = new User();
 			$u->Email=$_POST['email'];
@@ -81,7 +81,6 @@
 					header("Location: index.php");
 					}
 				}
-				
 			}
 		}		
 ?><!DOCTYPE html>
