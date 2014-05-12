@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	include_once("classes/Reservatie.class.php");
 	$reservaties = new Reservatie();
 
@@ -15,14 +15,13 @@
 <script type="text/javascript">
 	
 	function delete()
-	{ 	alert("delete");
-		<?php $reservaties->delete(); ?> }
+	{ <?php $reservaties->delete(); ?> }
 
 </script>
 
 </head>
 <body >
-
+<?php include_once('includes/include.nav.php'); ?>
 	<div class="container">
 		<h2>Reservaties</h2>
 		<a href="mijnrestaurant.php">Mijn restaurants</a>
@@ -48,7 +47,7 @@
 
 		while ($r = $all->fetch_assoc()) 
 		{
-						?>
+			?>
 				<tr>
 					<td><?php echo $r['Reservatie_Datum']; ?></td>
 					<td><?php echo $r['Reservatie_Personen']; ?></td>
