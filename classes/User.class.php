@@ -1,6 +1,5 @@
 <?php
 	include_once("DB.class.php");
-	session_start();
 
 	class User
 	{ 
@@ -12,7 +11,7 @@
 		private $m_bAdmin;
 		public $error = array();
 
-		public function __set($p_sProperty, $p_vValue)
+		public function __SET($p_sProperty, $p_vValue)
 		{
 			switch ($p_sProperty) 
 			{
@@ -91,7 +90,7 @@
 			}
 		}
 
-		public function __get($p_sProperty)
+		public function __GET($p_sProperty)
 		{
 
 			switch ($p_sProperty) 
@@ -175,16 +174,26 @@
 					password='".$db->conn->real_escape_string($this->m_sPassword)."'
 					";
 			
-			// $sql;
+			$sqlAdmin = "select * from tblgebruiker 
+						where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+						and
+						admin ='yes'";
+
+			$checkAdmin = $db->conn->query($sqlAdmin);
 
 			$result = $db->conn->query($sql);
 
 			if($result->num_rows == 1) {
-				return true;
+				if ($checkAdmin->num_rows == 1) {
+					$admin = "yes";
+					return $admin;
+				} else {
+					$admin = "no";
+					return $admin;
+				}
 
 			} else {
 				throw new Exception("Sorry, your email or password is incorrect");
-				
 			}
 		}
 	}

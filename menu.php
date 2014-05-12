@@ -16,6 +16,9 @@
 			$m->Save();
 			$feedback = "Your menu was saved!";
 
+			// Edit menu
+
+
 		} catch (Exception $e) {
 			$error = $e->getMessage();
 		}
@@ -26,7 +29,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Menu</title>
+	<title>Just In Time | Menu</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -48,11 +51,6 @@
         			<h4 class="modal-title" id="myModalLabel">Add a menu</h4>
       			</div>
       			<div class="modal-body">
-      				<?php if(isset($error)): ?>
-						<div class='bg-danger'><?php echo $error; ?></div>
-					<?php elseif(isset($feedback)): ?>
-						<div class='bg-success'><?php echo $feedback; ?></div>
-					<?php endif; ?>
 
 					<form class="form-horizontal" role="form" method="post">
 
@@ -91,24 +89,24 @@
 						    </div>
 					  	</div>
 
-					  	<div class="form-group">
-					    	<div class="col-sm-offset-2 col-sm-8">
-					      	<input type="submit" name="submitDish" class="btn btn-default" value="Add dish" />
-					    	</div>
-					  	</div>
-
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    	<button type="button" class="btn btn-primary">Add menu</button>
+			    	<input type="submit" name="submitDish" class="btn btn-primary" value="Add menu" />
 		    	</div>
+		    	</form>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<h2 class="col-md-3">Your menu's</h2>
 		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
+		<?php if(isset($error)): ?>
+			<div class='bg-danger'><?php echo $error; ?></div>
+		<?php elseif(isset($feedback)): ?>
+			<div class='bg-success'><?php echo $feedback; ?></div>
+		<?php endif; ?>
 	</div>
 		<table class="table table-striped">
 			<thead>

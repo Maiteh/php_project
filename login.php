@@ -12,12 +12,23 @@
 			//var_dump($user);
 
 			$u->canLogin();
-			if ($u->canLogin()){
+			if ($u->canLogin() == "yes") {
+				//echo "admin check gelukt";
 				session_start();
-				$_SESSION['email'] = $u->CheckEmail;
+				$_SESSION['email'] = $u->Email;
+				$_SESSION['admin'] = "yes";
 				$_SESSION['loggedin'] = true;
 		
+				header("Location: menu.php");
+
+			} elseif ($u->canLogin() == "no") {
+				session_start();
+				$_SESSION['email'] = $u->Email;
+				$_SESSION['admin'] = "no";
+				$_SESSION['loggedin'] = true;
+
 				header("Location: index.php");
+			}
 
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		catch (Exception $e) 
@@ -25,15 +36,22 @@
 			$error = $e->getMessage();
 		}
 	}
+	
+	/* fb login helper
+	use Facebook\FacebookSession;
+	use Facebook\FacebookRequest;
+	use Facebook\GraphUser;
+	use Facebook\FacebookRequestException;
 
+	FacebookSession::setDefaultApplication('241964169342731', 'd733f5b545d7c743b5f4359142f6a1f7');
+	*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Just in time | Register</title>
+	<title>Just in time | Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	
 </head>
 <body >
 
@@ -54,10 +72,19 @@
 
 				<h3 id="titleRegister">Login</h3>
 
-				<input id="iconUsername" type="text" value="<?php if(isset($_POST['email'])){ echo $_POST['email']; } else { echo "E-mail"; } ?>" name="email" onfocus="if(this.value == 'Email') { this.value = ''; }">
-				<input id="iconPassword" type="password" value="Password" name="password" onfocus="if(this.value == 'Password') { this.value = ''; }">
-				<input type="submit" value="Submit" name="btnLogin">
+				<input id="iconUsername" type="text" name="email" placeholder="E-mail">
+				<input id="iconPassword" type="password" name="password" placeholder="Password">
+				<input type="submit" value="Login" name="btnLogin">
 			</form>
+
+			<h4>
+				or login with facebook
+			</h4>
+			<br>
+			<fb:login-button data-size="large" scope="public_profile,email" onlogin="checkLoginState();">
+			</fb:login-button>
+
+			<div id="status"></div>
 		</section>
 	
 		<?php include("includes/include.footer.php"); ?>
@@ -66,6 +93,7 @@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
-	
+<script src="js/fb_login.js"></script>
+</div>
 </body>
 <html>
