@@ -61,9 +61,10 @@
 						$er_available = $u->error['errorAvailable'];
 					}else{
 					session_start();
-					$_SESSION['admin']=$u->Admin;
 					$_SESSION['email']=$u->Email;
-					//header("Location: register_admin.php");
+					$_SESSION['admin']=$u->Admin;
+					$_SESSION['loggedin'] = true;
+					header("Location: menu.php");
 					}
 				}
 				else
@@ -74,9 +75,10 @@
 						$er_available = $u->error['errorAvailable'];
 					}else{
 					session_start();
-					$_SESSION['firstname'] = $u->Firstname;
+					$_SESSION['email'] = $u->Email;
+					$_SESSION['admin'] = "no";
 					$_SESSION['loggedin'] = true;
-					header("Location: login.php");
+					header("Location: index.php");
 					}
 				}
 				
