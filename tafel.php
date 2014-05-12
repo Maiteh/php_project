@@ -29,7 +29,7 @@
 
 	<div class="container">
 
-<a href="tafelmaken.php">Tafel toevoegen</a>
+<a href="tafelmaken.php">Tafels toevoegen</a>
 
 <table class="table table-striped">
 		<thead>
@@ -48,7 +48,7 @@
                     	echo "<td>" .$t['Tafel_BezetTijd'] . " </td></tr>";
                     }
                 ?> 
-
+</tbody>
 	</div>
 
 </body>
