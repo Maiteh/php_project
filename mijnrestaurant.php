@@ -15,21 +15,41 @@
 <body >
 
 	<div class="container">
-		<h2>Mijn Restaurant</h2>
+		<h2>Mijn Restaurants</h2>
 	</div>
 
 	<div class="container">
-	
+
+<a href="restaurantmaken.php">Restaurant toevoegen</a>
+
+<table class="table table-striped">
+		<thead>
+			<th>Naam</th>
+			<th>Voornaam</th>
+			<th>Adres</th>
+			<th>Gemeente</th>
+			<th>Price</th>
+		</thead>
+	<tbody>
+
 	<?php
 
 		$restaurant = new Restaurant();
 		$all = $restaurant->getAll();
 
-		var_dump($all);
-
-		foreach($all->fetch_assoc() as $rest) 
+		while ($r = $all->fetch_assoc()) 
 		{
-			echo $rest;
+			?>
+				<tr>
+					<td><a href="mijnreservaties.php"><?php echo $r['Restaurant_Naam']; ?></td>
+					<td><?php echo $r['Restaurant_Adres']; ?></td>
+					<td><?php echo $r['Restaurant_Postcode']; ?></td>
+					<td><?php echo $r['Restaurant_Gemeente']; ?></td>
+					<td><?php echo $r['Restaurant_Telefoonnr']; ?></td>
+					<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
+					<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+				</tr>
+			<?php
 		}
 
 	?>
