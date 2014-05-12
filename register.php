@@ -64,7 +64,7 @@
 					$_SESSION['email']=$u->Email;
 					$_SESSION['admin']=$u->Admin;
 					$_SESSION['loggedin'] = true;
-					header("Location: menu.php");
+					header("Location: mijnrestaurant.php");
 					}
 				}
 				else

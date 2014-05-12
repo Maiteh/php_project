@@ -11,7 +11,6 @@
 			{
 				$restaurant = new Restaurant();
 				$restaurant->Naam = $_POST['restaurantnaam'];
-				$restaurant->VoorNaam = $_POST['restaurantvoornaam'];
 				$restaurant->Adres = $_POST['adres'];
 				$restaurant->Postcode = $_POST['postcode'];
 				$restaurant->Gemeente = $_POST['gemeente'];
@@ -69,12 +68,6 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label class="col-sm-2 control-label"  for="restaurantvoornaam">Voornaam</label>
-			<div class="col-sm-10">
-				<input class="form-control" type="text" name="restaurantvoornaam" id="restaurantvoornaam" placeholder="Voornaam">
-			</div>
-		</div>
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label" for="adres">Adres</label>
