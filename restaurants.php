@@ -29,7 +29,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Just in time | Mijn Restaurant</title>
+	<title>Just in time | Restaurants</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -41,7 +41,7 @@
 
 <div class="container">
 	<div class="row">
-		<h2 class="col-md-3">Mijn Restaurants</h2>
+		<h2 class="col-md-3">My Restaurants</h2>
 		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addResto"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
 	</div>
 

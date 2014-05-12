@@ -12,7 +12,7 @@
     	</div>
     	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      	<ul class="nav navbar-nav">
-	      		<li <?php if($page == "mijnrestaurant.php"){echo 'class="active"';}?>><a href="mijnrestaurant.php">Restaurant</a></li>
+	      		<li <?php if($page == "restaurants.php"){echo 'class="active"';}?>><a href="restaurants.php">Restaurant</a></li>
 	        	<li <?php if($page == "menu.php"){echo 'class="active"';}?>><a href="menu.php">Menu</a></li>
 	        	<li <?php if($page == "tafels.php"){echo 'class="active"';}?>><a href="tafels.php">Table</a></li>
 	        </ul>
