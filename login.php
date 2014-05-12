@@ -22,7 +22,7 @@
 				$_SESSION['id'] = $id;
 
 
-				header("Location: mijnrestaurant.php");
+				header("Location: restaurants.php");
 
 			} elseif ($u->canLogin() == "no") {
 				// geen admin (klant)
