@@ -1,19 +1,47 @@
 <?php
-	
-	include_once("classes/User.class.php");
 
-	session_start();
-	$_SESSION['email'] = $user->Email;
-	header("Location: backendRestaurant.php");
-	
+	if (!empty($_POST['btnLogin'])) 
+	{
+		try
+		{
+			include_once ("classes/User.class.php");
+			$u = new User();
+			$u->Email=$_POST['email'];
+			$u->Password=$_POST['password'];
+
+			if ($u->canLogin() == "yes") {
+				// admin gebruiker
+				session_start();
+				$_SESSION['email'] = $u->Email;
+				$_SESSION['admin'] = "yes";
+				$_SESSION['loggedin'] = true;
+		
+				header("Location: menu.php");
+
+			} elseif ($u->canLogin() == "no") {
+				// geen admin (klant)
+				session_start();
+				$_SESSION['email'] = $u->Email;
+				$_SESSION['admin'] = "no";
+				$_SESSION['loggedin'] = true;
+
+				header("Location: index.php");
+			}
+
+		}                                                                                                                                                                                                                                                                                                                                                                                                                                         
+		catch (Exception $e) 
+		{
+			$error = $e->getMessage();
+		}
+	}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Just in time | Register</title>
+	<title>Just in time | Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	
 </head>
 <body >
 
@@ -24,11 +52,21 @@
 	
 		<section class="formLogin col-md-4 col-md-offset-4">
 			<form  action="" method="post">
+
+				<?php 
+					if(isset($error))
+					{
+						echo "<p class='error'>$error</p>";
+					}
+				?>
+
 				<h3 id="titleRegister">Login</h3>
-				<input id="iconUsername" type="text" value="Username" name="username">
-				<input id="iconPassword" type="password" value="Password" name="password">
-				<input type="submit" value="Submit">
+
+				<input id="iconUsername" type="text" name="email" placeholder="E-mail">
+				<input id="iconPassword" type="password" name="password" placeholder="Password">
+				<input type="submit" value="Login" name="btnLogin">
 			</form>
+			<a href="register.php">Not registered yet?</a>
 		</section>
 	
 		<?php include("includes/include.footer.php"); ?>
@@ -37,6 +75,6 @@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.js"></script>
-	
+</div>
 </body>
 <html>

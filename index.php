@@ -5,22 +5,22 @@
 	<title>Just in time</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	
+
 </head>
 <body >
 
 	<div class="container">
-	
+
 		<header class="row headerLogo">
 			<img class="img-responsive col-xs-12" src="images/logo.png" alt="">
 		</header>
-	
+
 		<section class="btn">
 			<a href="register.php"><img class="img-responsive col-xs-6" src="images/btnImageR.png" alt="register"></a>
 			<a href="login.php"><img class="img-responsive col-xs-6" src="images/btnImageL.png" alt="login"></a>
 			<a href="mijnrestaurant.php">restaurant</a>
 		</section>
-	
+
 		<?php include("includes/include.footer.php"); ?>
 		
 	</div>
@@ -30,8 +30,3 @@
 	
 </body>
 <html>
-
-
-
-
-

@@ -1,28 +1,61 @@
 <?php
 
-	include_once 'Db.class.php';
+	include_once('Db.class.php');
 
-	class Menu 
-	//extends Restaurant
-	{
-		private var $m_sType;
-		private var $m_sNaam;
-		private var $m_iPrijs;
+	class Menu {
 
-		public function __set($p_sProperty, $p_vValue)
-		{
-			switch ($p_sProperty) 
-			{
-				case 'Type':
-					$this->m_sType = $p_vValue;
+		private $m_sMenu;
+		private $m_sStarter;
+		private $m_sMain;
+		private $m_sDessert;
+		private $m_iPrice;
+		private $m_iRestaurantId;
+
+		public function __SET($p_sProperty, $p_vValue) {
+			switch ($p_sProperty) {
+
+				case 'Menu':
+					if ($p_vValue == "") {
+						throw new Exception("Give a menu name");
+					} else {
+						$this->m_sMenu = $p_vValue;
+					}
 					break;
 				
-				case 'Naam':
-					$this->m_sNaam = $p_vValue;
+				case 'Starter':
+					if ($p_vValue == "") {
+						throw new Exception("Give a starter dish");
+					} else {
+						$this->m_sStarter = $p_vValue;
+					}
 					break;
 
-				case 'Prijs':
-					$this->m_iPrijs = $p_vValue;
+				case 'Main':
+					if ($p_vValue == "") {
+						throw new Exception("Give a main dish");
+					} else {
+						$this->m_sMain = $p_vValue;
+					}
+					break;
+
+				case 'Dessert':
+					if ($p_vValue == "") {
+						throw new Exception("Give a dessert");
+					} else {
+						$this->m_sDessert = $p_vValue;
+					}
+					break;
+
+				case 'Price':
+					if ($p_vValue == "") {
+						throw new Exception("Give a price");
+					} else {
+						$this->m_iPrice = $p_vValue;
+					}
+					break;
+
+				case 'RestaurantId':
+					$this->m_iRestaurantId = $p_vValue;
 					break;
 
 				default:
@@ -31,20 +64,31 @@
 			}
 		}
 
-		public function __get($p_sProperty)
-		{
+		public function __GET($p_sProperty) {
 			switch ($p_sProperty) 
 			{
-				case 'Type':
-					return $this->m_sType;
+				case 'Menu':
+					return $this->m_sMenu;
 					break;
 
-				case 'Naam':
-					return $this->m_sNaam;
+				case 'Starter':
+					return $this->m_sStarter;
 					break;
 
-				case 'Prijs':
-					return $this->m_iPrijs;
+				case 'Main':
+					return $this->m_sMain;
+					break;
+
+				case 'Dessert':
+					return $this->m_sDessert;
+					break;
+
+				case 'Price':
+					return $this->m_iPrice;
+					break;
+
+				case 'RestaurantId':
+					return $this->m_iRestaurantId;
 					break;
 				
 				default:
@@ -53,24 +97,41 @@
 			}
 		}
 
-
-		public function Save()
-		{
+		public function Save() {
             $db = new Db();
-            $sql = "insert into tbl_menu (type, naam, prijs) 
-            		values ('". $db->conn->real_escape_string($this->m_sType) ."', 
-            				'" . $db->conn->real_escape_string($this->m_sNaam) . "', 
-            				'" . $db->conn->real_escape_string($this->m_iPrijs) . "')
-					"; 
-            $db->conn->query($sql);
+            if ($db->conn->connect_errno) {
+            	echo "Where's yo database";
+            } else {
+            	$sql = "insert into tblmenu (menu_name, menu_starter, menu_main, menu_dessert, menu_price, fk_restaurant_id) 
+            		values (
+            				'" . $db->conn->real_escape_string($this->m_sMenu) ."', 
+            				'" . $db->conn->real_escape_string($this->m_sStarter) . "',
+            				'" . $db->conn->real_escape_string($this->m_sMain) . "', 
+            				'" . $db->conn->real_escape_string($this->m_sDessert) . "', 
+            				'" . $db->conn->real_escape_string($this->m_iPrice) . "',  
+            				'" . $db->conn->real_escape_string($this->m_iRestaurantId) . "'
+            				);";
+				//echo $sql;
+            	$db->conn->query($sql);
+            }
 		}
 
-		public function getAll()
-		{
+		public function getMenus() {
 		    $db = new Db();
-        	$sql = "select * from tblrestaurant";
-        	$result = $db->conn->query($sql);
-        	return $result;
+
+			if (!$db->conn->connect_errno) {
+				$sql = "SELECT * FROM tblmenu";
+				$allMenus = $db->conn->query($sql);
+
+				return $allMenus;
+			}
+		}
+
+		public function updateMenu() {
+
+		}
+
+		public function deleteMenu() {
 		}
 
 	}

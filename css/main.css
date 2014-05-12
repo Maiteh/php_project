@@ -66,8 +66,20 @@ input{
 	font-size: 16px;
 }
 
+#iconPhone{
+	background-image: url(../images/phoneIcon.png);
+	float: left;
+	padding-left: 70px;
+	padding-top: 10px;
+	background-repeat: no-repeat;
+	background-position: 10px;
+	font-size: 16px;
+}
+
+
 .formLogin{
 	margin-top: 60px;
+	padding-bottom: 20px;
 	width: 370px;
 	height: auto;
 	border: 3px solid #000;
@@ -82,6 +94,10 @@ input{
 	margin-top: -5px;
 }
 
+.logout{
+	margin-top: 11px;
+	margin-right: 15px;
+}
 
 /******Media quries*********/
 
