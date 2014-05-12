@@ -68,9 +68,17 @@
 					$_SESSION['email']=$u->Email;
 					$_SESSION['admin']=$u->Admin;
 					$_SESSION['loggedin'] = true;
+<<<<<<< HEAD
 					$_SESSION['id'] = $id;
 					
 					header("Location: menu.php");
+=======
+
+					$_SESSION['id'] = $id;
+					
+
+					header("Location: restaurants.php");
+>>>>>>> master
 					}
 				}
 				else

@@ -103,6 +103,7 @@
             {
 	        $sql = "insert into tblrestaurant
 	            (
+<<<<<<< HEAD
 		            restaurant_name, 
 		            restaurant_address, 
 		            restaurant_zip,
@@ -119,8 +120,29 @@
 	            		'" . $db->conn->real_escape_string($this->m_sEmail) . "',
 	           			'" . $db->conn->real_escape_string($this->m_sPhone) . "',
 	         			'" . $db->conn->real_escape_string($this->m_iUserId) . "'
+=======
+		            Restaurant_Naam,  
+		            Restaurant_Adres,
+		            Restaurant_Postcode,
+					Restaurant_Gemeente,
+					Restaurant_Website,
+					Restaurant_Email,
+					Restaurant_Telefoonnr,
+					Restaurant_GSM,
+					fk_gebruiker_id
+				)
+
+	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."',  
+	            		'" . $db->conn->real_escape_string($this->m_sAdres) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sPostcode) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sGemeente) . "',
+	           			'" . $db->conn->real_escape_string($this->m_sWebsite) . "',
+	         			'" . $db->conn->real_escape_string($this->m_sEmail) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sTelNummer) . "',
+	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "',
+	           			'" . $db->conn->real_escape_string($this->m_iGebruikerId) . "'
+>>>>>>> master
 	            		);";
-				echo $sql;
 	            $db->conn->query($sql);
             }
             else
