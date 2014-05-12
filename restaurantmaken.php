@@ -1,31 +1,37 @@
 <?php
-
-	include_once("classes/Restaurant.class.php");
-
-if (!empty($_POST)) 
-{
-	try 
-	{
-		$restaurant = new Restaurant();
-		$restaurant->Naam = $_POST['restaurantnaam'];
-		$restaurant->VoorNaam = $_POST['restaurantvoornaam'];
-		$restaurant->Adres = $_POST['adres'];
-		$restaurant->Postcode = $_POST['postcode'];
-		$restaurant->Gemeente = $_POST['gemeente'];
-		$restaurant->Website = $_POST['website'];
-		$restaurant->Email = $_POST['email'];
-		$restaurant->TelNummer = $_POST['telefoonnummer'];
-		$restaurant->GsmNummer = $_POST['gsmnummer'];
-		$restaurant->Save();
-	} 
-
-	catch (Exception $e) 
-	{
-		$error = $e->getMessage();
-	}
-
-}
 	
+	session_start();
+
+	if ($_SESSION['admin'] == "yes" && $_SESSION['loggedin'] == true) {
+		include_once("classes/Restaurant.class.php");
+
+		if (!empty($_POST)) 
+		{
+			try 
+			{
+				$restaurant = new Restaurant();
+				$restaurant->Naam = $_POST['restaurantnaam'];
+				$restaurant->VoorNaam = $_POST['restaurantvoornaam'];
+				$restaurant->Adres = $_POST['adres'];
+				$restaurant->Postcode = $_POST['postcode'];
+				$restaurant->Gemeente = $_POST['gemeente'];
+				$restaurant->Website = $_POST['website'];
+				$restaurant->Email = $_POST['email'];
+				$restaurant->TelNummer = $_POST['telefoonnummer'];
+				$restaurant->GsmNummer = $_POST['gsmnummer'];
+				$restaurant->GebruikerId = $_SESSION['id'];
+				$restaurant->Save();
+			} 
+
+			catch (Exception $e) 
+			{
+				$error = $e->getMessage();
+			}
+
+		}
+	} else {
+		header('Location: index.php');
+	}
 
 
 ?><!DOCTYPE html>

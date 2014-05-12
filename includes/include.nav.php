@@ -4,16 +4,17 @@
 	$page = end($url);
 ?>
 
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
 	
 	<div class="container container-fluid">
 		<div class="navbar-header">	
-      		<a class="navbar-brand" href="#">Just In Time</a>
+      		<a href="dashboard.php" class="navbar-brand logoW"><img src="images/logoW.png" alt="logo"></a>
     	</div>
     	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      	<ul class="nav navbar-nav">
-	      		<li <?php if($page == "restaurant.php"){echo 'class="active"';}?>><a href="#">Restaurant</a></li>
+	      		<li <?php if($page == "mijnrestaurant.php"){echo 'class="active"';}?>><a href="mijnrestaurant.php">Restaurant</a></li>
 	        	<li <?php if($page == "menu.php"){echo 'class="active"';}?>><a href="menu.php">Menu</a></li>
+	        	<li <?php if($page == "#"){echo 'class="active"';}?>><a href="#">Table</a></li>
 	        </ul>
 
 		    <ul class="nav navbar-nav navbar-right">
