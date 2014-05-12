@@ -21,7 +21,11 @@
 				$_SESSION['loggedin'] = true;
 				$_SESSION['id'] = $id;
 		
+<<<<<<< HEAD
 				header("Location: restaurants.php");
+=======
+				header("Location: mijnrestaurant.php");
+>>>>>>> master
 
 			} elseif ($u->canLogin() == "no") {
 				// geen admin (klant)
@@ -30,7 +34,11 @@
 				$_SESSION['admin'] = "no";
 				$_SESSION['loggedin'] = true;
 
+<<<<<<< HEAD
 				header("Location: restaurants.php");
+=======
+				header("Location: mijnrestaurant.php");
+>>>>>>> master
 			}
 
 		}                                                                                                                                                                                                                                                                                                                                                                                                                                         

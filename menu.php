@@ -1,9 +1,13 @@
 <?php
 	session_start();
 	if ($_SESSION['admin'] == "yes" && $_SESSION['loggedin'] == true) {
+<<<<<<< HEAD
 		
 		include_once('classes/Restaurant.class.php');
 		$r = new Restaurant();
+=======
+
+>>>>>>> master
 		include_once('classes/Menu.class.php');
 		$m = new Menu();
 
@@ -26,10 +30,13 @@
 				$error = $e->getMessage();
 			}
 		}
+<<<<<<< HEAD
 
 		if (!empty($_POST['btn-select'])) {
 			
 		}
+=======
+>>>>>>> master
 		
 	} else {
 		header('Location: index.php');
@@ -48,6 +55,7 @@
 <body>
 	<?php include_once('includes/include.nav.php'); ?>
 <div class="container">
+<<<<<<< HEAD
 	<h2>Menu</h2>
 	<p>Select your restaurant</p>
 	<form class="form-inline" role="form" method="post">
@@ -70,6 +78,15 @@
 	</form>
 
 	<div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+	<h1>Menu</h1>
+	<p>Select your restaurant</p>
+	<select>
+		
+	</select>
+
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+>>>>>>> master
   		<div class="modal-dialog">
     		<div class="modal-content">
      			<div class="modal-header">
@@ -127,6 +144,7 @@
 	</div>
 	<div class="row">
 		<h2 class="col-md-3">Your menu's</h2>
+<<<<<<< HEAD
 		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addMenu"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
 	</div>
 
@@ -169,6 +187,66 @@
 	?>
 		</tbody>
 	</table>
+=======
+		<button class="btn btn-default" type="button" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span>&nbsp;add</button>
+		<?php if(isset($error)): ?>
+			<div class='bg-danger'><?php echo $error; ?></div>
+		<?php elseif(isset($feedback)): ?>
+			<div class='bg-success'><?php echo $feedback; ?></div>
+		<?php endif; ?>
+	</div>
+		<table class="table table-striped">
+			<thead>
+				<th>Menu</th>
+				<th>Starter</th>
+				<th>Main</th>
+				<th>Dessert</th>
+				<th>Price</th>
+			</thead>
+			<tbody>
+		<?php 
+			$allMenus = $m->getMenus();
+			
+			if(mysqli_num_rows($allMenus) > 0) {	
+
+				while($menu = $allMenus->fetch_assoc()) { ?>
+					<tr>
+						<td><?php echo $menu['menu_name']; ?></td>
+						<td><?php echo $menu['menu_starter']; ?></td>
+						<td><?php echo $menu['menu_main']; ?></td>
+						<td><?php echo $menu['menu_dessert']; ?></td>
+						<td><?php echo $menu['menu_price']; ?></td>
+						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
+						<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					</tr>
+						
+		<?php
+				}
+			} else {
+				echo "<p>No menu's saved</p>";	
+			}
+		?>
+			</tbody>
+		</table>
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+     			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<h4 class="modal-title" id="myModalLabel">Edit </h4>
+      			</div>
+      			<div class="modal-body">
+        			
+      			</div>
+      			<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    	<button type="button" class="btn btn-primary">Edit menu</button>
+			    </div>
+    		</div>
+  		</div>
+	</div>
+>>>>>>> master
 
 </div>
 </body>

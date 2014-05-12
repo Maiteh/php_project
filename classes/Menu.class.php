@@ -15,7 +15,11 @@
 			switch ($p_sProperty) {
 
 				case 'Menu':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
+=======
+					if ($p_vValue == "") {
+>>>>>>> master
 						throw new Exception("Give a menu name");
 					} else {
 						$this->m_sMenu = $p_vValue;
@@ -23,7 +27,11 @@
 					break;
 				
 				case 'Starter':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
+=======
+					if ($p_vValue == "") {
+>>>>>>> master
 						throw new Exception("Give a starter dish");
 					} else {
 						$this->m_sStarter = $p_vValue;
@@ -31,7 +39,11 @@
 					break;
 
 				case 'Main':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
+=======
+					if ($p_vValue == "") {
+>>>>>>> master
 						throw new Exception("Give a main dish");
 					} else {
 						$this->m_sMain = $p_vValue;
@@ -39,7 +51,11 @@
 					break;
 
 				case 'Dessert':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
+=======
+					if ($p_vValue == "") {
+>>>>>>> master
 						throw new Exception("Give a dessert");
 					} else {
 						$this->m_sDessert = $p_vValue;
@@ -47,7 +63,11 @@
 					break;
 
 				case 'Price':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
+=======
+					if ($p_vValue == "") {
+>>>>>>> master
 						throw new Exception("Give a price");
 					} else {
 						$this->m_iPrice = $p_vValue;
@@ -55,11 +75,15 @@
 					break;
 
 				case 'RestaurantId':
+<<<<<<< HEAD
 					if (empty($p_vValue)) {
 							throw new Exception("Give a price");
 					} else {
 						$this->m_iRestaurantId = $p_vValue;
 					}
+=======
+					$this->m_iRestaurantId = $p_vValue;
+>>>>>>> master
 					break;
 
 				default:
@@ -124,8 +148,12 @@
 		    $db = new Db();
 
 			if (!$db->conn->connect_errno) {
+<<<<<<< HEAD
 				$sql = "SELECT * FROM tblmenu
 						WHERE fk_restaurant_id = ";
+=======
+				$sql = "SELECT * FROM tblmenu";
+>>>>>>> master
 				$allMenus = $db->conn->query($sql);
 
 				return $allMenus;
