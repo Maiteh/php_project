@@ -1,29 +1,34 @@
 <?php
 	session_start();
+	if ($_SESSION['admin'] == "yes" && $_SESSION['loggedin'] == true) {
 
-	include_once('classes/Menu.class.php');
-	$m = new Menu();
+		include_once('classes/Menu.class.php');
+		$m = new Menu();
 
-	if (!empty($_POST['submitDish'])) {
-		try {
-			// Save menu
-			$m->Menu = $_POST['menu'];
-			$m->Starter = $_POST['starter'];
-			$m->Main = $_POST['main'];
-			$m->Dessert = $_POST['dessert'];
-			$m->Price = floatval($_POST['price']);
-			$m->RestaurantId = 1;
-			$m->Save();
-			$feedback = "Your menu was saved!";
+		if (!empty($_POST['submitDish'])) {
+			try {
+				// Save menu
+				$m->Menu = $_POST['menu'];
+				$m->Starter = $_POST['starter'];
+				$m->Main = $_POST['main'];
+				$m->Dessert = $_POST['dessert'];
+				$m->Price = floatval($_POST['price']);
+				$m->RestaurantId = 1;
+				$m->Save();
+				$feedback = "Your menu was saved!";
 
-			// Edit menu
+				// Edit menu
+				
 
-
-		} catch (Exception $e) {
-			$error = $e->getMessage();
+			} catch (Exception $e) {
+				$error = $e->getMessage();
+			}
 		}
 		
+	} else {
+		header('Location: index.php');
 	}
+	
 
 ?><!doctype html>
 <html lang="en">

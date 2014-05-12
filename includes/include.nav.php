@@ -17,7 +17,8 @@
 	        </ul>
 
 		    <ul class="nav navbar-nav navbar-right">
-		        <li><a href="logout.php">Log out</a></li>
+
+		        <li><a href="logout.php">Log out <?php echo $_SESSION['email']; ?></a></li>
 		    </ul>
 	    </div>
   </div>

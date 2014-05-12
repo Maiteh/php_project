@@ -37,14 +37,6 @@
 		}
 	}
 	
-	/* fb login helper
-	use Facebook\FacebookSession;
-	use Facebook\FacebookRequest;
-	use Facebook\GraphUser;
-	use Facebook\FacebookRequestException;
-
-	FacebookSession::setDefaultApplication('241964169342731', 'd733f5b545d7c743b5f4359142f6a1f7');
-	*/
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,15 +68,7 @@
 				<input id="iconPassword" type="password" name="password" placeholder="Password">
 				<input type="submit" value="Login" name="btnLogin">
 			</form>
-
-			<h4>
-				or login with facebook
-			</h4>
-			<br>
-			<fb:login-button data-size="large" scope="public_profile,email" onlogin="checkLoginState();">
-			</fb:login-button>
-
-			<div id="status"></div>
+			<a href="register.php">Not registered yet?</a>
 		</section>
 	
 		<?php include("includes/include.footer.php"); ?>
