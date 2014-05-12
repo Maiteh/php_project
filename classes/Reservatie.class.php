@@ -111,6 +111,14 @@
         	return $result;
 		}
 
+		public function delete()
+		{
+			$db = new Db();
+			$sql = "DELETE FROM tblreservaties WHERE 
+					Reservatie_ID = 30";
+			$db->conn->query($sql);
+		}
+
 	}
 
 ?>

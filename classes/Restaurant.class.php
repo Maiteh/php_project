@@ -146,7 +146,6 @@
 	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "'
 	            				);
 						";
-				echo $sql;
 	            $db->conn->query($sql);
             }
             else

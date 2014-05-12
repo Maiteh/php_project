@@ -47,7 +47,7 @@ if (!empty($_POST))
 
   function datum()
   {
-  	alert("test")
+  	alert("test");
   	var selected = $( "#datepicker" ).datepicker( "option", "currentText" );
     var datum = $.datepicker.parseDate( "yy-mm-dd", "2007-01-26" );
     //http://api.jqueryui.com/datepicker/#option-currentText
@@ -62,6 +62,7 @@ if (!empty($_POST))
 <body>
 
 <div class="container">
+	<a href="mijnrestaurant.php">Mijn restaurants</a>
 	<h1>Maak een reservatie</h1>
 	<div class="invisible">...</div>
 	<h4>Vul het formulier in om een reservatie te plaatsen</h4>
@@ -80,8 +81,8 @@ if (!empty($_POST))
 	<div class="col-md-8">
 		<h3>Reservatie informatie</h3>
 
-		<form class="form-horizontal" role="form" action="" method="pos">
-		<input type="text" name="datum" id="datumveld" class="">
+		<form class="form-horizontal" role="form" action="" method="post">
+		<input type="text" name="datum" id="datumveld" class="invisible">
 
 			<div class="form-group">
 				<label  class="col-sm-2 control-label" for="restaurantnaam">Aantal mensen</label>
@@ -136,7 +137,7 @@ if (!empty($_POST))
 			<div class="form-group">
 				<label class="col-sm-2 control-label"  for="datum"></label>
 				<div class="col-sm-4">
-					<button type="submit" class="btn btn-primary" onClick="datum()">Plaats Reservatie</button></div>
+					<button type="button" class="btn btn-primary" onclick="datum()">Plaats Reservatie</button>
 				</div>
 			</div>
 

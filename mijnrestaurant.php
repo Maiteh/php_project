@@ -28,7 +28,7 @@
 			<th>Voornaam</th>
 			<th>Adres</th>
 			<th>Gemeente</th>
-			<th>Price</th>
+			<th>Tel nr.</th>
 		</thead>
 	<tbody>
 
@@ -46,8 +46,10 @@
 					<td><?php echo $r['Restaurant_Postcode']; ?></td>
 					<td><?php echo $r['Restaurant_Gemeente']; ?></td>
 					<td><?php echo $r['Restaurant_Telefoonnr']; ?></td>
-					<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-					<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					<td><a href="" data-toggle="modal" data-target="#editModal">&nbsp;Menu</a></td>
+					<td><a href="" data-toggle="modal" data-target="#deleteModal">&nbsp;Tafels</a></td>
+					<td><a href="mijnreservaties.php" data-toggle="modal" data-target="#deleteModal">&nbsp;Reservaties</a></td>
+
 				</tr>
 			<?php
 		}

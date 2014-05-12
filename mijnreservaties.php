@@ -1,7 +1,8 @@
 <?php
 
 	include_once("classes/Reservatie.class.php");
-	
+	$reservaties = new Reservatie();
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +12,21 @@
 	<!--<link rel="stylesheet" type="text/css" href="css/main.css">-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	
+<script type="text/javascript">
+	
+	function delete()
+	{ 	alert("delete");
+		<?php $reservaties->delete(); ?> }
+
+</script>
+
 </head>
 <body >
 
 	<div class="container">
 		<h2>Reservaties</h2>
 		<a href="mijnrestaurant.php">Mijn restaurants</a>
+		<a href="reservatiemaken.php">Reservatie toevoegen</a>
 	</div>
 
 	<div class="container">
@@ -33,8 +43,7 @@
 	<tbody>
 
 	<?php
-
-		$reservaties = new Reservatie();
+	$reservaties = new Reservatie();
 		$all = $reservaties->getAll();
 
 		while ($r = $all->fetch_assoc()) 
@@ -47,8 +56,7 @@
 					<td><?php echo $r['Reservatie_Naam']; ?></td>
 					<td><?php echo $r['Reservatie_Telnr']; ?></td>
 					<td><?php echo $r['Reservatie_Email']; ?></td>
-					<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-					<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					<td><a href="" data-toggle="modal" data-target="#deleteModal" onClick="delete()" ><span class="glyphicon glyphicon-remove"></span>&nbsp;Delete</a></td>
 				</tr>
 			<?php
 		}
