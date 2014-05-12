@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	if ($_SESSION['admin'] == "yes" && $_SESSION['loggedin'] == true) {
-
+		include_once('classes/Restaurant.class.php');
+		$r = new Restaurant();
 		include_once('classes/Menu.class.php');
 		$m = new Menu();
 
@@ -44,9 +45,24 @@
 <div class="container">
 	<h1>Menu</h1>
 	<p>Select your restaurant</p>
-	<select>
-		
-	</select>
+	<form class="form-inline" role="form" method="post">
+		<div class="form-group">
+			<select class="form-control">
+				<option disabled>Select a restaurant</option>
+				<?php 
+					$allR = $r->getAll($_SESSION['id']);
+					if(mysqli_num_rows($allR) > 0) {
+						while ($resto = $allR->fetch_assoc()){ ?>
+							<option value="<?php echo $resto['Restaurant_ID']; ?>"><?php echo $resto['Restaurant_Naam'] ?></option>
+				<?php 	}
+					} else {
+
+					} ?>
+			</select>
+		   	
+		   	<input type="submit" class="form-control" id="btn-select" name="resto" value="Select">
+		</div>
+	</form>
 
 	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		<div class="modal-dialog">
@@ -133,7 +149,7 @@
 						<td><?php echo $menu['menu_starter']; ?></td>
 						<td><?php echo $menu['menu_main']; ?></td>
 						<td><?php echo $menu['menu_dessert']; ?></td>
-						<td><?php echo $menu['menu_price']; ?></td>
+						<td>&euro;<?php echo $menu['menu_price']; ?></td>
 						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
 						<td><a href="" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
 					</tr>
@@ -147,24 +163,9 @@
 			</tbody>
 		</table>
 
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  		<div class="modal-dialog">
-    		<div class="modal-content">
-     			<div class="modal-header">
-        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        			<h4 class="modal-title" id="myModalLabel">Edit </h4>
-      			</div>
-      			<div class="modal-body">
-        			
-      			</div>
-      			<div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    	<button type="button" class="btn btn-primary">Edit menu</button>
-			    </div>
-    		</div>
-  		</div>
-	</div>
-
 </div>
+<script>
+	
+</script>
 </body>
 </html>
