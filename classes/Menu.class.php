@@ -134,10 +134,31 @@
 		}
 
 		public function updateMenu() {
-
+			$db = new Db();
+            if ($db->conn->connect_errno) {
+            	echo "Where's yo database";
+            } else {
+            	$sql = "UPDATE tblmenu SET 	menu_name = 		'" . $db->conn->real_escape_string($this->m_sMenu) ."', 
+            								menu_starter =		'" . $db->conn->real_escape_string($this->m_sStarter) . "', 
+            								menu_main = 		'" . $db->conn->real_escape_string($this->m_sMain) . "',
+            								menu_dessert =		'" . $db->conn->real_escape_string($this->m_sDessert) . "', 
+            								menu_price = 		'" . $db->conn->real_escape_string($this->m_iPrice) . "' , 
+            								fk_restaurant_id = 	'" . $db->conn->real_escape_string($this->m_iRestaurantId) . "';";
+				
+            	$db->conn->query($sql);
+            }
 		}
 
 		public function deleteMenu() {
+			$db = new Db();
+            if ($db->conn->connect_errno) {
+            	echo "Where's yo database";
+            } else {
+            	$sql = "DELETE FROM tblmenu
+            			WHERE fk_restaurant_id = $this->m_iRestaurantId";
+				
+            	$result = $db->conn->query($sql);
+            }
 		}
 
 	}

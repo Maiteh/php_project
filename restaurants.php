@@ -118,7 +118,7 @@
 				</div>
 				<div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    	<input class="btn btn-primary" type="submit" name="submit" id="submit">
+			    	<input class="btn btn-primary" type="submit" name="submit" id="submit" value="Add restaurant">
 		    	</div>
 		    	</form>
 			</div>

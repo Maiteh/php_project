@@ -8,7 +8,7 @@
 	
 	<div class="container container-fluid">
 		<div class="navbar-header">	
-      		<a href="dashboard.php" class="navbar-brand logoW"><img src="images/logoW.png" alt="logo"></a>
+      		<a href="restaurants.php" class="navbar-brand logoW"><img src="images/logoW.png" alt="logo"></a>
     	</div>
     	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      	<ul class="nav navbar-nav">

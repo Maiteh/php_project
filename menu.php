@@ -20,9 +20,19 @@
 				$m->Main = $_POST['main'];
 				$m->Dessert = $_POST['dessert'];
 				$m->Price = floatval($_POST['price']);
-				$m->RestaurantId = $_GET['resto_id'];;
+				$m->RestaurantId = $restoId;
 				$m->Save();
 				$feedback = "Your menu was saved!";
+
+			} catch (Exception $e) {
+				$error = $e->getMessage();
+			}
+		} else if (!empty($_POST['deleteDish'])) {
+			try {
+				// Delete menu
+				$m->RestaurantId = $restoId;
+				$m->deleteMenu();
+				$feedback = "Your menu was deleted!";
 
 			} catch (Exception $e) {
 				$error = $e->getMessage();
@@ -78,8 +88,8 @@
 					<td><?php echo $menu['menu_main']; ?></td>
 					<td><?php echo $menu['menu_dessert']; ?></td>
 					<td>&euro;<?php echo $menu['menu_price']; ?></td>
-					<td><a href="menu.php"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
-					<td><a href="tables.php"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					<td><a href="#" data-toggle="modal" data-target="#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
+					<td><a href="#deleteMenu" data-toggle="modal" data-target="#deleteMenu"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
 				</tr>
 					
 	<?php 	} ?>
@@ -90,6 +100,86 @@
 		}
 	?>
 	
+	<div class="modal fade" id="deleteMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+     			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<h4 class="modal-title" id="myModalLabel">Delete menu</h4>
+      			</div>
+      			<div class="modal-body">
+      				<p>
+      					Are you sure you want to delete this menu?
+      				</p>
+
+      				<form role="form" method="post">
+      					<input type="hidden" name="id" value="<?php echo $restoId; ?>">
+      			</div>
+      			<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    	<input type="submit" name="deleteDish" class="btn btn-primary" value="Delete menu" />
+		    	</div>
+		    	</form>
+    		</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+     			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<h4 class="modal-title" id="myModalLabel">Add a menu</h4>
+      			</div>
+      			<div class="modal-body">
+
+					<form class="form-horizontal" role="form" method="post">
+
+						<div class="form-group">
+					  		<label for="menu" class="col-sm-2 control-label">Menu name</label>
+					  		<div class="col-sm-8">
+								<input type="text" class="form-control" id="menu" name="menu">		 	
+							</div>
+					  	</div>
+
+						<div class="form-group">
+					  		<label for="starter" class="col-sm-2 control-label">Starter</label>
+					  		<div class="col-sm-8">
+								<input type="text" class="form-control" id="starter" name="starter">		 	
+							</div>
+					  	</div>
+
+					  	<div class="form-group">
+						    <label for="main" class="col-sm-2 control-label">Main</label>
+						    <div class="col-sm-8">
+					      		<input type="text" class="form-control" id="main" name="main">
+					    	</div>
+					  	</div>
+
+					  	<div class="form-group">
+						    <label for="dessert" class="col-sm-2 control-label">Dessert</label>
+						    <div class="col-sm-8">
+					      		<input type="text" class="form-control" id="dessert" name="dessert">
+					    	</div>
+					  	</div>
+
+					  	<div class="form-group">
+						   	<label for="price" class="col-sm-2 control-label">Price</label>
+						    <div class="col-sm-8">
+						      	<input type="text" class="form-control" id="price" name="price" placeholder="3.50">
+						    </div>
+					  	</div>
+
+					
+				</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    	<input type="submit" name="submitDish" class="btn btn-primary" value="Add menu" />
+		    	</div>
+		    	</form>
+			</div>
+		</div>
+	</div>
 
 	<div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   		<div class="modal-dialog">
