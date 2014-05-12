@@ -103,22 +103,26 @@
             {
 	        $sql = "insert into tblrestaurant
 	            (
-		            restaurant_name, 
-		            restaurant_address, 
-		            restaurant_zip,
-		            restaurant_city,
-					restaurant_email,
-					restaurant_phone,
-					fk_user_id
+		            Restaurant_Naam,  
+		            Restaurant_Adres,
+		            Restaurant_Postcode,
+					Restaurant_Gemeente,
+					Restaurant_Website,
+					Restaurant_Email,
+					Restaurant_Telefoonnr,
+					Restaurant_GSM,
+					fk_gebruiker_id
 				)
 
-	            values ('" . $db->conn->real_escape_string($this->m_sName) ."', 
-	            		'" . $db->conn->real_escape_string($this->m_sAddress) . "', 
-	            		'" . $db->conn->real_escape_string($this->m_sZip) . "',
-	            		'" . $db->conn->real_escape_string($this->m_sCity) . "',
-	            		'" . $db->conn->real_escape_string($this->m_sEmail) . "',
-	           			'" . $db->conn->real_escape_string($this->m_sPhone) . "',
-	         			'" . $db->conn->real_escape_string($this->m_iUserId) . "'
+	            values ('" . $db->conn->real_escape_string($this->m_sNaam) ."',  
+	            		'" . $db->conn->real_escape_string($this->m_sAdres) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sPostcode) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sGemeente) . "',
+	           			'" . $db->conn->real_escape_string($this->m_sWebsite) . "',
+	         			'" . $db->conn->real_escape_string($this->m_sEmail) . "',
+	            		'" . $db->conn->real_escape_string($this->m_sTelNummer) . "',
+	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "',
+	           			'" . $db->conn->real_escape_string($this->m_iGebruikerId) . "'
 	            		);";
 				echo $sql;
 	            $db->conn->query($sql);
