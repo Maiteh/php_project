@@ -100,6 +100,7 @@
             		'" . $db->conn->real_escape_string($this->m_iTelnr) . "', 
             		'" . $db->conn->real_escape_string($this->m_sEmail) . "');
 			"; 
+			echo $sql;
             $db->conn->query($sql);
 		}
 
@@ -109,6 +110,14 @@
         	$sql = "select * from tblreservaties";
         	$result = $db->conn->query($sql);
         	return $result;
+		}
+
+		public function delete()
+		{
+			$db = new Db();
+			$sql = "DELETE FROM tblreservaties WHERE 
+					Reservatie_ID = 30";
+			$db->conn->query($sql);
 		}
 
 	}
