@@ -2,16 +2,19 @@
 	session_start();
 
 	include_once('classes/Menu.class.php');
+	$m = new Menu();
 
 	if (!empty($_POST['submitDish'])) {
 		try {
-
-			$m = new Menu();
-			$m->Type = $_POST['type'];
-			$m->Name = $_POST['name'];
-			$m->Price = $_POST['price'];
+			// Save menu
+			$m->Menu = $_POST['menu'];
+			$m->Starter = $_POST['starter'];
+			$m->Main = $_POST['main'];
+			$m->Dessert = $_POST['dessert'];
+			$m->Price = floatval($_POST['price']);
+			$m->RestaurantId = 1;
 			$m->Save();
-			$feedback = "Your dish was saved!";
+			$feedback = "Your menu was saved!";
 
 		} catch (Exception $e) {
 			$error = $e->getMessage();
@@ -25,6 +28,7 @@
 	<meta charset="UTF-8">
 	<title>Menu</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -35,37 +39,47 @@
 	<select>
 		
 	</select>
-	<h2>Add dish</h2>
+	<h2>Add Menu</h2>
 	<?php if(isset($error)): ?>
-		<p class='bg-danger'><?php echo $error; ?></p>
+		<div class='bg-danger'><?php echo $error; ?></div>
 	<?php elseif(isset($feedback)): ?>
-		<p class='bg-success'><?php echo $feedback; ?></p>
+		<div class='bg-success'><?php echo $feedback; ?></div>
 	<?php endif; ?>
+
 	<form class="form-horizontal" role="form" method="post">
 
 		<div class="form-group">
-	  		<label for="type" class="col-sm-2 control-label">Type</label>
+	  		<label for="menu" class="col-sm-2 control-label">Menu name</label>
 	  		<div class="col-sm-8">
-			  	<select class="form-control" id="type" name="type">
-			  		<option value="none" selected>Choose type of dish</option>
-				  	<option value="0">Starter</option>
-				  	<option value="1">Main</option>
-				  	<option value="2">Desert</option>
-				</select>
+				<input type="text" class="form-control" id="menu" name="menu">		 	
+			</div>
+	  	</div>
+
+		<div class="form-group">
+	  		<label for="starter" class="col-sm-2 control-label">Starter</label>
+	  		<div class="col-sm-8">
+				<input type="text" class="form-control" id="starter" name="starter">		 	
 			</div>
 	  	</div>
 
 	  	<div class="form-group">
-		    <label for="name" class="col-sm-2 control-label">Dish name</label>
+		    <label for="main" class="col-sm-2 control-label">Main</label>
 		    <div class="col-sm-8">
-	      		<input type="text" class="form-control" id="name" name="name">
+	      		<input type="text" class="form-control" id="main" name="main">
+	    	</div>
+	  	</div>
+
+	  	<div class="form-group">
+		    <label for="dessert" class="col-sm-2 control-label">Dessert</label>
+		    <div class="col-sm-8">
+	      		<input type="text" class="form-control" id="dessert" name="dessert">
 	    	</div>
 	  	</div>
 
 	  	<div class="form-group">
 		   	<label for="price" class="col-sm-2 control-label">Price</label>
 		    <div class="col-sm-8">
-		      	<input type="text" class="form-control" id="price" name="price" placeholder="3,50">
+		      	<input type="text" class="form-control" id="price" name="price" placeholder="3.50">
 		    </div>
 	  	</div>
 
@@ -76,6 +90,62 @@
 	  	</div>
 
 	</form>
+
+	<h2>Your menu's</h2>
+	<div>
+		<table class="table table-striped">
+			<thead>
+				<th>Menu</th>
+				<th>Starter</th>
+				<th>Main</th>
+				<th>Dessert</th>
+				<th>Price</th>
+			</thead>
+			<tbody>
+		<?php 
+			$allMenus = $m->getMenus();
+			
+			if(mysqli_num_rows($allMenus) > 0) {	
+
+				while($menu = $allMenus->fetch_assoc()) { ?>
+					<tr>
+						<td><?php echo $menu['menu_name']; ?></td>
+						<td><?php echo $menu['menu_starter']; ?></td>
+						<td><?php echo $menu['menu_main']; ?></td>
+						<td><?php echo $menu['menu_dessert']; ?></td>
+						<td><?php echo $menu['menu_price']; ?></td>
+						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-pencil"></span>&nbsp;edit</a></td>
+						<td><a href="" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-remove"></span>&nbsp;delete</a></td>
+					</tr>
+						
+		<?php
+				}
+			} else {
+				echo "<p>No menu's saved</p>";	
+			}
+		?>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+     			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        			<h4 class="modal-title" id="myModalLabel">Edit </h4>
+      			</div>
+      			<div class="modal-body">
+        			...
+      			</div>
+      			<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    	<button type="button" class="btn btn-primary">Edit menu</button>
+			    </div>
+    		</div>
+  		</div>
+	</div>
+
 </div>
 </body>
 </html>
