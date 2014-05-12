@@ -38,7 +38,7 @@
 
 				case 'Occupation':
 					if(!empty($p_vValue)){
-						$this->m_sOccupation = $p_vValue * 100;
+						$this->m_sOccupation = $p_vValue;
 					}
 					else
 					{

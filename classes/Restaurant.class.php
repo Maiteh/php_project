@@ -124,7 +124,6 @@
 	           			'" . $db->conn->real_escape_string($this->m_sGsmNummer) . "',
 	           			'" . $db->conn->real_escape_string($this->m_iGebruikerId) . "'
 	            		);";
-				echo $sql;
 	            $db->conn->query($sql);
             }
             else

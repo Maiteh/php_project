@@ -36,7 +36,7 @@
 			else
 			{
 					$t->AddTable();	
-					//header("Location: index.php");
+					header("Location: tafel.php");
 			}
 	}		
 ?><!DOCTYPE html>
@@ -70,7 +70,7 @@
 				<input class="tafel" type="text" name="person"  placeholder="How many persons fit this table ?"  value="<?php if(isset($_POST['person'])){ echo $_POST['person']; } ?>">
 
 				<p class="error"><?php if (isset($er_occupation)) { echo $er_occupation;} ?></p>
-				<input class="tafel" type="text" name="occupation" placeholder="How long should this table be occupied ? in minutes !"  value="<?php if(isset($_POST['occupation'])){ echo $_POST['occupation']; } ?>">
+				<input class="tafel" type="text" name="occupation" placeholder="How long should this table be occupied ? hh mm ss"  value="<?php if(isset($_POST['occupation'])){ echo $_POST['occupation']; } ?>">
 
 
 				<input type="submit" value="Submit">
