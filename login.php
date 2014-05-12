@@ -20,15 +20,24 @@
 				$_SESSION['admin'] = "yes";
 				$_SESSION['loggedin'] = true;
 				$_SESSION['id'] = $id;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> origin/master
 				header("Location: mijnrestaurant.php");
 
 			} elseif ($u->canLogin() == "no") {
 				// geen admin (klant)
 				session_start();
 				$_SESSION['email'] = $u->Email;
+<<<<<<< HEAD
 				//$_SESSION['admin'] = "no";
 				//$_SESSION['loggedin'] = true;
+=======
+				$_SESSION['admin'] = "no";
+				$_SESSION['loggedin'] = true;
+>>>>>>> origin/master
 
 				header("Location: mijnrestaurant.php");
 			}

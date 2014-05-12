@@ -11,7 +11,7 @@
 		private $m_bAdmin;
 		public $error = array();
 
-		public function __set($p_sProperty, $p_vValue)
+		public function __SET($p_sProperty, $p_vValue)
 		{
 			switch ($p_sProperty) 
 			{
@@ -37,6 +37,7 @@
 		 				$this->m_sPassword = md5($p_vValue.$salt);
 		 				break;
 		 			}
+
 		 		case 'Firstname':
 					if(!empty($p_vValue)){
 						$this->m_sFirstname = $p_vValue;
@@ -44,6 +45,16 @@
 					else
 					{
 						$this->error["errorFirstname"] = "Fill in your firstname";
+					}
+					break;
+
+				case 'Lastname':
+					if(!empty($p_vValue)){
+					$this->m_sLastname = $p_vValue;
+					}
+					else
+					{
+						$this->error["errorLastname"] = "Fill in your lastname";
 					}
 					break;
 
@@ -79,7 +90,7 @@
 			}
 		}
 
-		public function __get($p_sProperty)
+		public function __GET($p_sProperty)
 		{
 
 			switch ($p_sProperty) 
@@ -112,7 +123,7 @@
 			$isavailable= $this->EmailAvailable($db);
 			if($isavailable)
 			{
-			$sql = "insert into tblklant(
+			$sql = "insert into tblgebruiker(
 						email, password, firstname, lastname, phone, admin) 
 					VALUES(
 						'" . $db->conn->real_escape_string($this->m_sEmail) . "', 
@@ -124,17 +135,18 @@
 						)
 					";
 			$db->conn->query($sql);
-			echo $sql;
-		}
-		else
-		{
-			$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
-		}
+			//echo $sql;
+			}
+			else
+			{
+				$this->error['errorAvailable'] = "Sorry this e-mail adress already has an account.";
+			}
+
 		}
 
 		public function EmailAvailable($db)
 		{
-			$sql = "select * from tblklant 
+			$sql = "select * from tblgebruiker 
 					where email = '".$db->conn->real_escape_string($this->m_sEmail)."'
 					";
 			$result = $db->conn->query($sql);
@@ -159,28 +171,44 @@
 			$sql = "select * from tblgebruiker 
 					where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
 					and
-					password='".$db->conn->real_escape_string($this->m_sPassword)."'
-					";
-			
-			// $sql;
+					password='".$db->conn->real_escape_string($this->m_sPassword)."'";
+
+			$sqlAdmin = "select * from tblgebruiker 
+						where email ='".$db->conn->real_escape_string($this->m_sEmail)."' 
+						and
+						admin ='yes'";
+
+			$checkAdmin = $db->conn->query($sqlAdmin);
 
 			$result = $db->conn->query($sql);
 
-			if($result->num_rows == 1)
-			{
-				$db->conn->query($sql);
-				$_SESSION['loggedin'] = TRUE;
-				$_SESSION['email'] = $this->m_sEmail;
-				//header(""); -> redirecten naar 
+			if($result->num_rows == 1) {
+				if ($checkAdmin->num_rows == 1) {
+					$admin = "yes";
+					return $admin;
+				} else {
+					$admin = "no";
+					return $admin;
+				}
 
-				echo "tis gelukt";
-			}
-			else
-			{	
+			} else {
 				throw new Exception("Sorry, your email or password is incorrect");
 			}
 		}
 
+		public function getID() {
+			$db = new Db();
+			$sql = "SELECT Klant_ID FROM tblgebruiker
+					WHERE email = '$this->m_sEmail'";
+			
+			$result = $db->conn->query($sql);
+			$id = mysqli_fetch_assoc($result);
 
+			return $id;
+		}
 	}
 ?>
+
+		
+
+

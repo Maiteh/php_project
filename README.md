@@ -6,4 +6,7 @@ php restaurant project 2014
 
 Grace
 robbert
-Andry--
+Andry
+
+Code liefst niet naar master comitten indien er nog errors aanwezig zijn, doe dat dan in eigen branche tot error opgelost is.
+

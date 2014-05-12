@@ -79,6 +79,7 @@ input{
 
 .formLogin{
 	margin-top: 60px;
+	padding-bottom: 20px;
 	width: 370px;
 	height: auto;
 	border: 3px solid #000;
@@ -90,7 +91,7 @@ input{
 }
 
 .logoW{
-	margin-top: -5px;
+	margin: 5px 5px;
 }
 
 .logout{
