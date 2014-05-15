@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-	include_once("classes/Reservatie.class.php");
+include_once("classes/Reservatie.class.php");
 	
 ?><!DOCTYPE html>
 <html lang="en">
@@ -13,10 +14,10 @@
 	
 </head>
 <body >
-
+<?php include_once('includes/include.nav.php'); ?>
 	<div class="container">
 		<h2>Reservaties</h2>
-		<a href="mijnrestaurant.php">Mijn restaurants</a>
+		<a href="reservatiemaken.php" class="btn btn-default" rol="button">Reserveer</a>
 	</div>
 
 	<div class="container">

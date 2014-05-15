@@ -70,7 +70,7 @@
 					<td><?php echo $r['restaurant_email']; ?></td>
 					<td><?php echo $r['restaurant_phone']; ?></td>
 					<td><a href="menu.php?resto_id=<?php echo $r['restaurant_id']; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Menu</a></td>
-					<td><a href="tables.php?resto_id=<?php echo $r['restaurant_id']; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Tables</a></td>
+					<td><a href="tafel.php?resto_id=<?php echo $r['restaurant_id']; ?>"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Tables</a></td>
 				</tr>
 		<?php } ?>
 

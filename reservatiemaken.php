@@ -1,6 +1,8 @@
 <?php
 
-	include_once("classes/Reservatie.class.php");
+session_start();
+
+include_once("classes/Reservatie.class.php");
 
 if (!empty($_POST)) 
 {
@@ -21,7 +23,6 @@ if (!empty($_POST))
 	{
 		$error = $e->getMessage();
 	}
-
 }
 
 ?><!doctype html>
@@ -60,7 +61,7 @@ if (!empty($_POST))
 </head>
 
 <body>
-
+<?php include_once('includes/include.nav.php'); ?>
 <div class="container">
 	<h1>Maak een reservatie</h1>
 	<div class="invisible">...</div>
@@ -81,7 +82,7 @@ if (!empty($_POST))
 		<h3>Reservatie informatie</h3>
 
 		<form class="form-horizontal" role="form" action="" method="pos">
-		<input type="text" name="datum" id="datumveld" class="">
+		<input type="text" name="datum" id="datumveld" class="invisible">
 
 			<div class="form-group">
 				<label  class="col-sm-2 control-label" for="restaurantnaam">Aantal mensen</label>

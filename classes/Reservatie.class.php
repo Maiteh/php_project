@@ -1,9 +1,8 @@
 <?php
 
-	include_once 'Db.class.php';
+	include_once('Db.class.php');
 
 	class Reservatie
-	//extends Restaurant
 	{
 		private  $m_sDatum;
 		private  $m_iPersonen;
@@ -100,6 +99,8 @@
             		'" . $db->conn->real_escape_string($this->m_iTelnr) . "', 
             		'" . $db->conn->real_escape_string($this->m_sEmail) . "');
 			"; 
+
+			echo $sql;
             $db->conn->query($sql);
 		}
 

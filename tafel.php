@@ -29,7 +29,7 @@
 
 	<div class="container">
 
-<a href="tafelmaken.php">Tafel toevoegen</a>
+<a href="tafelmaken.php" class="btn btn-default" role="button">Tafel toevoegen</a>
 
 <table class="table table-striped">
 		<thead>
